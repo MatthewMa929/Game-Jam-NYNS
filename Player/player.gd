@@ -15,9 +15,9 @@ func _physics_process(delta):
 		var pos = tilemap.local_to_map(collision.get_position())
 		#coordinates for ores
 		var coords = tilemap.get_cell_atlas_coords(0,pos)
-		if coords != Vector2.ZERO:
+		if coords != Vector2i(0,0):
 			#Mining Ores does what (Coords for Ores on Atlas TileMap)
-			pass
+			print(coords)
 		tilemap.erase_cell(0,pos)
 		
 		
