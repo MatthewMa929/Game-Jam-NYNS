@@ -1,17 +1,282 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxgyw2gl5mrt3"]
+[gd_scene load_steps=17 format=3 uid="uid://dxgyw2gl5mrt3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_y7tub"]
-[ext_resource type="Texture2D" uid="uid://b2rejig7whdt2" path="res://icon.svg" id="2_5ysy7"]
+[ext_resource type="Texture2D" uid="uid://bhil1e6itrt0f" path="res://Sprites/Character.png" id="2_46mrk"]
+[ext_resource type="Script" path="res://Player/player_animation_manager.gd" id="3_bcgk6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvp4b"]
-radius = 16.0
+radius = 32.0
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_1vfrv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hmthg"]
+animation = &"mechaclaw_dig"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5havh"]
+animation = &"mechaclaw_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sle77"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lwesu"]
+states/End/position = Vector2(342.222, 196.247)
+states/Start/position = Vector2(342.667, 129.333)
+states/dig/node = SubResource("AnimationNodeAnimation_hmthg")
+states/dig/position = Vector2(495.519, 195)
+states/idle/node = SubResource("AnimationNodeAnimation_5havh")
+states/idle/position = Vector2(495.667, 129.222)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_sle77")]
+graph_offset = Vector2(-197, 3)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lmsqb"]
+animation = &"float_idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g2aeo"]
+graph_offset = Vector2(-761.464, 77.3928)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_1vfrv")
+nodes/Add2/position = Vector2(160, 133.333)
+nodes/claw/node = SubResource("AnimationNodeStateMachine_lwesu")
+nodes/claw/position = Vector2(-160, 186.667)
+nodes/float/node = SubResource("AnimationNodeAnimation_lmsqb")
+nodes/float/position = Vector2(26.6667, 373.333)
+nodes/output/position = Vector2(320, 133.333)
+node_connections = [&"Add2", 0, &"claw", &"Add2", 1, &"float", &"output", 0, &"Add2"]
+
+[sub_resource type="Animation" id="Animation_kj6tu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Hscale/Root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Hscale/Root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands/DrillTip:region_rect")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(310, 174, 149, 145)]
+}
+
+[sub_resource type="Animation" id="Animation_kkwwa"]
+resource_name = "float_idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Hscale/Root:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(-2, -2, -2, -2),
+"update": 0,
+"values": [Vector2(-6, 6), Vector2(0, -8), Vector2(6, 6), Vector2(8.9407e-08, -8)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Hscale/Root:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 2.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-0.0872665, 0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_y2bl4"]
+resource_name = "mechaclaw_dig"
+length = 0.1
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hands/DrillTip:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Rect2(595.88, 174, 149, 145), Rect2(455.72, 174, 149, 145)]
+}
+
+[sub_resource type="Animation" id="Animation_mulu3"]
+resource_name = "mechaclaw_idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hands/DrillTip:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(310, 174, 149, 145)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyu0j"]
+_data = {
+"RESET": SubResource("Animation_kj6tu"),
+"float_idle": SubResource("Animation_kkwwa"),
+"mechaclaw_dig": SubResource("Animation_y2bl4"),
+"mechaclaw_idle": SubResource("Animation_mulu3")
+}
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y7tub")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_5ysy7")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_pvp4b")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.25, 0.25)
+
+[node name="Hscale" type="Node2D" parent="Node2D"]
+
+[node name="Root" type="Sprite2D" parent="Node2D/Hscale"]
+texture = ExtResource("2_46mrk")
+region_enabled = true
+region_rect = Rect2(16, 17, 164, 184)
+
+[node name="Back" type="Sprite2D" parent="Node2D/Hscale/Root"]
+show_behind_parent = true
+texture = ExtResource("2_46mrk")
+offset = Vector2(-60.1938, 44.8597)
+region_enabled = true
+region_rect = Rect2(499, 6, 143, 153)
+
+[node name="Goggles" type="Sprite2D" parent="Node2D/Hscale/Root"]
+clip_children = 2
+position = Vector2(-21, -46)
+texture = ExtResource("2_46mrk")
+region_enabled = true
+region_rect = Rect2(6, 309, 112, 67)
+
+[node name="EyeMask" type="Sprite2D" parent="Node2D/Hscale/Root"]
+position = Vector2(-8, -52)
+texture = ExtResource("2_46mrk")
+region_enabled = true
+region_rect = Rect2(121, 313, 88, 54)
+
+[node name="EyeR" type="Sprite2D" parent="Node2D/Hscale/Root/EyeMask"]
+clip_children = 2
+texture = ExtResource("2_46mrk")
+offset = Vector2(16.8, -1.56)
+region_enabled = true
+region_rect = Rect2(212, 323, 25, 43)
+
+[node name="EyeL" type="Sprite2D" parent="Node2D/Hscale/Root/EyeMask"]
+clip_children = 2
+texture = ExtResource("2_46mrk")
+offset = Vector2(-14.48, 5.38)
+region_enabled = true
+region_rect = Rect2(251, 315, 41, 41)
+
+[node name="Respirator" type="Sprite2D" parent="Node2D/Hscale/Root"]
+clip_children = 2
+position = Vector2(2, -36)
+texture = ExtResource("2_46mrk")
+region_enabled = true
+region_rect = Rect2(6, 373, 146, 77)
+
+[node name="LegL" type="Node2D" parent="Node2D/Hscale/Root"]
+show_behind_parent = true
+position = Vector2(40, 56)
+
+[node name="FootL" type="Sprite2D" parent="Node2D/Hscale/Root/LegL"]
+show_behind_parent = true
+position = Vector2(6.91064, 24.7996)
+texture = ExtResource("2_46mrk")
+offset = Vector2(-28.1938, 4.85967)
+region_enabled = true
+region_rect = Rect2(-5, 209, 136.86, 101)
+
+[node name="LegR" type="Node2D" parent="Node2D/Hscale/Root"]
+position = Vector2(-21.6766, 48.5193)
+rotation = 0.523599
+
+[node name="FootR" type="Sprite2D" parent="Node2D/Hscale/Root/LegR"]
+position = Vector2(34.4547, 21.6882)
+rotation = -1.1996
+texture = ExtResource("2_46mrk")
+offset = Vector2(-30.0342, 0.774464)
+region_enabled = true
+region_rect = Rect2(-5, 209, 136.86, 101)
+
+[node name="HandsOrigin" type="Node2D" parent="Node2D/Hscale/Root"]
+position = Vector2(8, 32)
+
+[node name="Hands" type="RemoteTransform2D" parent="Node2D/Hscale/Root/HandsOrigin"]
+remote_path = NodePath("../../../../../Hands")
+
+[node name="Hands" type="Sprite2D" parent="."]
+show_behind_parent = true
+z_index = 1
+position = Vector2(2, 8)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_46mrk")
+offset = Vector2(36, 0)
+region_enabled = true
+region_rect = Rect2(188, 2, 288, 145)
+
+[node name="DrillTip" type="Sprite2D" parent="Hands"]
+show_behind_parent = true
+position = Vector2(87, -5)
+texture = ExtResource("2_46mrk")
+offset = Vector2(20, 0)
+region_enabled = true
+region_rect = Rect2(310, 174, 149, 145)
+
+[node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("controller", "eye_l", "eye_r", "hands_item", "backpack", "hscale", "anim")]
+script = ExtResource("3_bcgk6")
+controller = NodePath("..")
+eye_l = NodePath("../Node2D/Hscale/Root/EyeMask/EyeL")
+eye_r = NodePath("../Node2D/Hscale/Root/EyeMask/EyeR")
+hands_item = NodePath("../Node2D/Hscale/Root/HandsOrigin/Hands")
+backpack = NodePath("../Node2D/Hscale/Root/Back")
+hscale = NodePath("../Node2D/Hscale")
+anim = NodePath("../AnimationTree")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+tree_root = SubResource("AnimationNodeBlendTree_g2aeo")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Add2/add_amount = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vyu0j")
+}
+
+[connection signal="block_destroyed" from="." to="AnimationManager" method="_on_player_block_destroyed"]
