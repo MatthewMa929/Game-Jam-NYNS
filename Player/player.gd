@@ -1,25 +1,23 @@
 extends CharacterBody2D
 
 
-const SPEED = 100
+var SPEED = 100
+var direction = Vector2.ZERO
 
 func _physics_process(delta):
-	var direction_x = Input.get_axis("Left", "Right")
-	var direction_y = Input.get_axis("Up", "Down")
-	if direction_x:
-		velocity.x = direction_x * SPEED
-		velocity.y = 0
-	elif direction_y:
-		velocity.y = direction_y * SPEED
-		velocity.x = 0
-	if !direction_x:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-	if !direction_y:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+	direction.x = Input.get_axis("Left", "Right")
+	direction.y = Input.get_axis("Up", "Down")
+	direction = direction.normalized()
+	velocity = direction * SPEED
 	var collision = move_and_collide(velocity * delta)
 	if collision and collision.get_collider() is TileMap:
 		var tilemap = collision.get_collider()
 		var pos = tilemap.local_to_map(collision.get_position())
+		#coordinates for ores
+		var coords = tilemap.get_cell_atlas_coords(0,pos)
+		if coords != Vector2.ZERO:
+			#Mining Ores does what (Coords for Ores on Atlas TileMap)
+			pass
 		tilemap.erase_cell(0,pos)
 		
 		
