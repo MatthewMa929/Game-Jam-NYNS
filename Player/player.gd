@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 signal block_destroyed()
 
-var SPEED = 100
+var SPEED = 200
+var RESISTANCE = 100
 var direction = Vector2.ZERO
 
 func _physics_process(delta):
@@ -11,7 +12,7 @@ func _physics_process(delta):
 	direction = direction.normalized()
 	velocity = direction * SPEED
 	var collision = move_and_collide(velocity * delta)
-	if collision and collision.get_collider() is TileMap:
+	while collision and collision.get_collider() is TileMap:
 		var tilemap := collision.get_collider() as TileMap
 		var pos = tilemap.local_to_map(collision.get_position() - collision.get_normal() * 1.0)
 		#coordinates for ores
@@ -29,5 +30,7 @@ func _physics_process(delta):
 				tilemap.set_cell(1, pos_offset, 0, Vector2i(randi() % 3, 0))
 
 		block_destroyed.emit()
+		tilemap.update_internals()
+		collision = move_and_collide(collision.get_remainder())
 		
 		
