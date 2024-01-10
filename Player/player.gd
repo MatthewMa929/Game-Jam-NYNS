@@ -6,6 +6,11 @@ var SPEED = 200
 var RESISTANCE = 100
 var direction = Vector2.ZERO
 
+var gems = 0
+var gold = 0
+var iron = 0
+var oxyore = 0
+
 func _physics_process(delta):
 	direction.x = Input.get_axis("Left", "Right")
 	direction.y = Input.get_axis("Up", "Down")
@@ -18,6 +23,15 @@ func _physics_process(delta):
 		#coordinates for ores
 		var coords = tilemap.get_cell_atlas_coords(0,pos)
 		tilemap.erase_cell(0, pos)
+		if tilemap.name == "Ores": 
+			if coords.y == 0: #gems
+				gems += 1
+			if coords.y == 1: #gold
+				gold += 1
+			if coords.y == 2: #iron
+				iron += 1
+			if coords.y == 3: #oxyore
+				oxyore += 1
 		if tilemap.name != "Dirt": return
 		tilemap.erase_cell(1, pos)
 		for pos_offset in [

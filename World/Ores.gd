@@ -5,16 +5,18 @@ extends TileMap
 var WIDTH = 100
 var DEPTH = 0
 
-var gems = 0
-var gold = 0
-var iron = 0
-var oxyore = 0
+var spwn_gems = 0
+var spwn_gold = 0
+var spwn_iron = 0
+var spwn_oxyore = 0
 
 var ore_chance = 0.0015
 var gem_chance = ore_chance/20.0
 var gold_chance = ore_chance/10.0
 var iron_chance = ore_chance/2.0
 var oxyore_chance = ore_chance
+
+signal ore_created
 
 @onready var rng = RandomNumberGenerator.new()
 
@@ -37,21 +39,21 @@ func _process(delta):
 	oxyore_chance = ore_chance
 	if Input.is_action_just_released('mouse_left'):
 		DEPTH += 100
-		print([DEPTH, gems, gold, iron, oxyore])
+		print([DEPTH, spwn_gems, spwn_gold, spwn_iron, spwn_oxyore])
 		create_ores(WIDTH)
 	
 func create_ores(width):
 	for y in range(DEPTH, DEPTH + 100):
 		for x in range(width):
 			var rand_num = rng.randf_range(0.0, 1.0)
-			if min(gem_chance, gold_chance) > rand_num: #gems
-				gems += create_ore_chunk(0, x, y, 0.1)
-			elif min(gold_chance, iron_chance) > rand_num: #gold
-				gold += create_ore_chunk(1, x, y, 0.15)
-			elif iron_chance > rand_num: #iron
-				iron += create_ore_chunk(2, x, y, 0.3)
-			elif oxyore_chance > rand_num: #oxyore
-				oxyore += create_ore_chunk(3, x, y, 0.15)
+			if min(gem_chance, gold_chance) > rand_num: #spwn_gems
+				spwn_gems += create_ore_chunk(0, x, y, 0.1)
+			elif min(gold_chance, iron_chance) > rand_num: #spwn_gold
+				spwn_gold += create_ore_chunk(1, x, y, 0.15)
+			elif iron_chance > rand_num: #spwn_iron
+				spwn_iron += create_ore_chunk(2, x, y, 0.3)
+			elif oxyore_chance > rand_num: #spwn_oxyore
+				spwn_oxyore += create_ore_chunk(3, x, y, 0.15)
 			else: #dirt
 				pass
 	
