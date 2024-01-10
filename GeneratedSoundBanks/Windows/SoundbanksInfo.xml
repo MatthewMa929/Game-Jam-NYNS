@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="16" SoundBankVersion="150">
+	<RootPaths>
+		<ProjectRoot>../../../../../../../../Program Files (x86)/Audiokinetic/Wwise 2023.1.0.8367/Projects/New Year New Skills Mining Game</ProjectRoot>
+		<SourceFilesRoot>../../../../../../../../Program Files (x86)/Audiokinetic/Wwise 2023.1.0.8367/Projects/New Year New Skills Mining Game/.cache/Windows</SourceFilesRoot>
+		<SoundBanksRoot>.</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>../../../../../../../../Program Files (x86)/Audiokinetic/Wwise 2023.1.0.8367/Projects/New Year New Skills Mining Game/GeneratedSoundBanks/Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B6CBD692-12EC-CDBA-0932-48F63C40C91F}">
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+			<Plugins>
+				<AudioDevices>
+					<Plugin Id="2317455096" Name="No_Output" LibName="No Output" LibId="11862023"/>
+					<Plugin Id="3859886410" Name="System" LibName="System" LibId="11403271"/>
+				</AudioDevices>
+			</Plugins>
+			<Busses>
+				<Bus Id="3803692087" Name="Master Audio Bus"/>
+			</Busses>
+		</SoundBank>
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{56A94D01-F627-BA90-515C-9AC8D11A3F93}">
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<Media>
+				<File Id="141542728" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>drill_Engine.wav</ShortName>
+					<CachePath>SFX/drill_Engine_891A6D51.wem</CachePath>
+				</File>
+				<File Id="237732258" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rockCrumbling.wav</ShortName>
+					<CachePath>SFX/rockCrumbling_F5BFE4AF.wem</CachePath>
+				</File>
+				<File Id="874823903" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rockCrumbling.wav</ShortName>
+					<CachePath>SFX/rockCrumbling_9FD10CCB.wem</CachePath>
+				</File>
+				<File Id="945131514" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>rockCrumbling.wav</ShortName>
+					<CachePath>SFX/rockCrumbling_36AD4AA9.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="737866587" Name="Drill_Mining">
+					<MediaRefs>
+						<MediaRef Id="141542728"/>
+						<MediaRef Id="237732258"/>
+						<MediaRef Id="874823903"/>
+						<MediaRef Id="945131514"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2118051910" Name="Stop_Drill_Mining"/>
+			</Events>
+		</SoundBank>
+	</SoundBanks>
+	<FileHash>{C2ACFE39-1B97-2E92-7C9A-C2AE9F2BFD0E}</FileHash>
+</SoundBanksInfo>
