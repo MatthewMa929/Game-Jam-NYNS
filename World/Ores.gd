@@ -1,9 +1,9 @@
 extends TileMap
 
 
-#LEFT CLICK TO GENERATE 1 LEVEL, 1300 current limit
+#LEFT CLICK TO GENERATE 1 LEVEL, 1000 current limit, 120, 150, 200 DEPTH per civilization
 var WIDTH = 100
-var HEIGHT = 0
+var DEPTH = 0
 
 var gems = 0
 var gold = 0
@@ -11,7 +11,7 @@ var iron = 0
 var oxyore = 0
 
 var ore_chance = 0.0015
-var gem_chance = ore_chance/16.0
+var gem_chance = ore_chance/20.0
 var gold_chance = ore_chance/10.0
 var iron_chance = ore_chance/2.0
 var oxyore_chance = ore_chance
@@ -26,26 +26,22 @@ const TILES = {
 }
 
 func _ready():
-	create_ores(WIDTH, HEIGHT)
+	create_ores(WIDTH)
 				
 				
 func _process(delta):
-	ore_chance = 0.0015 + (HEIGHT/1000000.0)
-	gem_chance = ore_chance/(16.0 - HEIGHT/100.0)
-	gold_chance = ore_chance/(10.0 - HEIGHT/150.0)
+	ore_chance = 0.0015 + (DEPTH/1000000.0)
+	gem_chance = ore_chance/min((16.0 - 1.1**(DEPTH/100)), 5.0)
+	gold_chance = ore_chance/min((9.0 - 1.1**(DEPTH/100)), 3.0)
 	iron_chance = ore_chance/2.0
 	oxyore_chance = ore_chance
-		
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			if event.pressed:
-				HEIGHT += 100
-				print([HEIGHT, gems, gold, iron, oxyore])
-				create_ores(WIDTH, HEIGHT)
+	if Input.is_action_just_released('mouse_left'):
+		DEPTH += 100
+		print([DEPTH, gems, gold, iron, oxyore])
+		create_ores(WIDTH)
 	
-func create_ores(width, height):
-	for y in range(height, height + 100):
+func create_ores(width):
+	for y in range(DEPTH, DEPTH + 100):
 		for x in range(width):
 			var rand_num = rng.randf_range(0.0, 1.0)
 			if min(gem_chance, gold_chance) > rand_num: #gems
