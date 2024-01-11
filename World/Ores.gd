@@ -16,9 +16,10 @@ var gold_chance = ore_chance/10.0
 var iron_chance = ore_chance/2.0
 var oxyore_chance = ore_chance
 
-signal ore_created
+signal ore_created(WIDTH, DEPTH)
 
 @onready var rng = RandomNumberGenerator.new()
+@onready var dirt = $"../Dirt"
 
 const TILES = {
 	'gems': 0,
@@ -28,8 +29,8 @@ const TILES = {
 }
 
 func _ready():
+	self.ore_created.connect(dirt.create_dirt)
 	create_ores(WIDTH)
-				
 				
 func _process(delta):
 	ore_chance = 0.0015 + (DEPTH/1000000.0)
@@ -43,6 +44,7 @@ func _process(delta):
 		create_ores(WIDTH)
 	
 func create_ores(width):
+	ore_created.emit(WIDTH, DEPTH)
 	for y in range(DEPTH, DEPTH + 100):
 		for x in range(width):
 			var rand_num = rng.randf_range(0.0, 1.0)
