@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 signal block_destroyed()
 
-var SPEED = 200
+var ORI_SPEED = 200
+var SPEED = ORI_SPEED
 var RESISTANCE = 100
 var direction = Vector2.ZERO
 
@@ -10,6 +11,8 @@ var gems = 0
 var gold = 0
 var iron = 0
 var oxyore = 0
+
+@onready var dig_timer = $DigTimer
 
 func _physics_process(delta):
 	direction.x = Input.get_axis("Left", "Right")
@@ -22,7 +25,6 @@ func _physics_process(delta):
 		var pos = tilemap.local_to_map(collision.get_position() - collision.get_normal() * 1.0)
 		#coordinates for ores
 		var coords = tilemap.get_cell_atlas_coords(0,pos)
-		tilemap.erase_cell(0, pos)
 		if tilemap.name == "Ores": 
 			if coords.y == 0: #gems
 				gems += 1
@@ -32,6 +34,9 @@ func _physics_process(delta):
 				iron += 1
 			if coords.y == 3: #oxyore
 				oxyore += 1
+		dig_timer.start()
+		SPEED = ORI_SPEED - RESISTANCE
+		tilemap.erase_cell(0, pos)
 		if tilemap.name != "Dirt": return
 		tilemap.erase_cell(1, pos)
 		for pos_offset in [
@@ -46,5 +51,6 @@ func _physics_process(delta):
 		block_destroyed.emit()
 		tilemap.update_internals()
 		collision = move_and_collide(collision.get_remainder())
-		
-		
+
+func _on_dig_timer_timeout():
+	SPEED = ORI_SPEED

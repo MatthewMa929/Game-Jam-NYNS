@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxgyw2gl5mrt3"]
+[gd_scene load_steps=18 format=3 uid="uid://dxgyw2gl5mrt3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_y7tub"]
 [ext_resource type="Texture2D" uid="uid://bhil1e6itrt0f" path="res://Sprites/Character.png" id="2_46mrk"]
@@ -6,40 +6,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvp4b"]
 radius = 32.0
-
-[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_1vfrv"]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hmthg"]
-animation = &"mechaclaw_dig"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5havh"]
-animation = &"mechaclaw_idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sle77"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lwesu"]
-states/End/position = Vector2(342.222, 196.247)
-states/Start/position = Vector2(342.667, 129.333)
-states/dig/node = SubResource("AnimationNodeAnimation_hmthg")
-states/dig/position = Vector2(495.519, 195)
-states/idle/node = SubResource("AnimationNodeAnimation_5havh")
-states/idle/position = Vector2(495.667, 129.222)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_sle77")]
-graph_offset = Vector2(-197, 3)
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lmsqb"]
-animation = &"float_idle"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g2aeo"]
-nodes/Add2/node = SubResource("AnimationNodeAdd2_1vfrv")
-nodes/Add2/position = Vector2(160, 133.333)
-nodes/claw/node = SubResource("AnimationNodeStateMachine_lwesu")
-nodes/claw/position = Vector2(-160, 186.667)
-nodes/float/node = SubResource("AnimationNodeAnimation_lmsqb")
-nodes/float/position = Vector2(26.6667, 373.333)
-nodes/output/position = Vector2(320, 133.333)
-node_connections = [&"Add2", 0, &"claw", &"Add2", 1, &"float", &"output", 0, &"Add2"]
 
 [sub_resource type="Animation" id="Animation_kj6tu"]
 length = 0.001
@@ -151,6 +117,43 @@ _data = {
 "mechaclaw_dig": SubResource("Animation_y2bl4"),
 "mechaclaw_idle": SubResource("Animation_mulu3")
 }
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_1vfrv"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hmthg"]
+animation = &"mechaclaw_dig"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5havh"]
+animation = &"mechaclaw_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sle77"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lwesu"]
+states/End/position = Vector2(342.222, 196.247)
+states/Start/position = Vector2(342.667, 129.333)
+states/dig/node = SubResource("AnimationNodeAnimation_hmthg")
+states/dig/position = Vector2(495.519, 195)
+states/idle/node = SubResource("AnimationNodeAnimation_5havh")
+states/idle/position = Vector2(495.667, 129.222)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_sle77")]
+graph_offset = Vector2(-197, 3)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lmsqb"]
+animation = &"float_idle"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_g2aeo"]
+nodes/Add2/node = SubResource("AnimationNodeAdd2_1vfrv")
+nodes/Add2/position = Vector2(160, 133.333)
+nodes/claw/node = SubResource("AnimationNodeStateMachine_lwesu")
+nodes/claw/position = Vector2(-160, 186.667)
+nodes/float/node = SubResource("AnimationNodeAnimation_lmsqb")
+nodes/float/position = Vector2(26.6667, 373.333)
+nodes/output/position = Vector2(320, 133.333)
+node_connections = [&"Add2", 0, &"claw", &"Add2", 1, &"float", &"output", 0, &"Add2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u6ty2"]
+radius = 500.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y7tub")
@@ -270,6 +273,9 @@ anim = NodePath("../AnimationTree")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 active = false
+libraries = {
+"": SubResource("AnimationLibrary_vyu0j")
+}
 tree_root = SubResource("AnimationNodeBlendTree_g2aeo")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Add2/add_amount = 1.0
@@ -279,4 +285,13 @@ libraries = {
 "": SubResource("AnimationLibrary_vyu0j")
 }
 
+[node name="DigTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="Surround" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Surround"]
+shape = SubResource("CircleShape2D_u6ty2")
+
 [connection signal="block_destroyed" from="." to="AnimationManager" method="_on_player_block_destroyed"]
+[connection signal="timeout" from="DigTimer" to="." method="_on_dig_timer_timeout"]

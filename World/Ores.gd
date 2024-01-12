@@ -1,8 +1,8 @@
 extends TileMap
 
 
-#LEFT CLICK TO GENERATE 1 LEVEL, 1000 current limit, 120, 150, 200 DEPTH per civilization
-var WIDTH = 100
+#LEFT CLICK TO GENERATE 1 LEVEL, no depth limit, 120, 150, 200 DEPTH per civilization
+var WIDTH = 200
 var DEPTH = 0
 
 var spwn_gems = 0
@@ -53,15 +53,15 @@ func create_ores(width):
 			elif min(gold_chance, iron_chance) > rand_num: #spwn_gold
 				spwn_gold += create_ore_chunk(1, x, y, 0.15)
 			elif iron_chance > rand_num: #spwn_iron
-				spwn_iron += create_ore_chunk(2, x, y, 0.3)
+				spwn_iron += create_ore_chunk(2, x, y, 0.2)
 			elif oxyore_chance > rand_num: #spwn_oxyore
-				spwn_oxyore += create_ore_chunk(3, x, y, 0.15)
+				spwn_oxyore += create_ore_chunk(3, x, y, 0.1)
 			else: #dirt
 				pass
 	
 func create_ore_chunk(ore, center_x, center_y, spawn_chance):
 	var ore_amt = 0
-	var rand_radius = rng.randf_range(2.0, 5.0)
+	var rand_radius = rng.randf_range(3.0, 10.0)
 	for x in range(rand_radius*2):
 		for y in range(rand_radius*2):
 			var rand_num = rng.randf_range(0.0, 1.0)
