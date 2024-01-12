@@ -4273,6 +4273,14 @@ outline_color = Color(0.333333, 0.333333, 0.333333, 1)
 shadow_color = Color(0.213542, 0.213542, 0.213542, 1)
 shadow_offset = Vector2(0, -3)
 
+[sub_resource type="Gradient" id="Gradient_0e503"]
+interpolation_mode = 2
+colors = PackedColorArray(0.0810276, 0.0920824, 0.151042, 0.917647, 0.117647, 0.141176, 0.266667, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h07gw"]
+gradient = SubResource("Gradient_0e503")
+fill_from = Vector2(1, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4660k"]
 font_size = 18
 outline_color = Color(0.529412, 0.321569, 0.12549, 1)
@@ -4596,6 +4604,21 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="UpgradeLabel4" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_y4w1e")]
+layout_mode = 2
+text = "Oxygen Tubes [Press E to place]"
+max_value = 0
+
+[node name="CostButton4" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_gxmrj")]
+layout_mode = 2
+resource1_index = 3
+resource2_amount = 0
+
+[node name="Control" type="Control" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR"]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="UpgradeLabel" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_y4w1e")]
 layout_mode = 2
 
@@ -4611,6 +4634,17 @@ layout_mode = 2
 text = "Motorclaw Speed"
 
 [node name="CostButton2" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_gxmrj")]
+layout_mode = 2
+resource1_index = 2
+resource2_index = 1
+resource1_amount = 20
+resource2_amount = 10
+
+[node name="UpgradeLabel7" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_y4w1e")]
+layout_mode = 2
+text = "Motorclaw Level"
+
+[node name="CostButton7" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_gxmrj")]
 layout_mode = 2
 resource1_index = 2
 resource2_index = 1
@@ -4637,25 +4671,29 @@ resource1_index = 2
 resource1_amount = 20
 resource2_amount = 5
 
-[node name="Control" type="Control" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR"]
-custom_minimum_size = Vector2(0, 24)
+[node name="UpgradeLabel6" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_y4w1e")]
 layout_mode = 2
-size_flags_vertical = 3
+text = "Vision Distance"
+max_value = 3
 
-[node name="UpgradeLabel4" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_y4w1e")]
+[node name="CostButton6" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_gxmrj")]
 layout_mode = 2
-text = "Oxygen Tubes [Press E to place]"
-max_value = 0
-
-[node name="CostButton4" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_gxmrj")]
-layout_mode = 2
-resource1_index = 3
-resource2_amount = 0
+resource1_index = 2
+resource1_amount = 20
+resource2_amount = 5
 
 [node name="Control2" type="Control" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR"]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Gradient" type="TextureRect" parent="UI/UpgradeMenu/Control"]
+layout_mode = 2
+offset_left = 312.0
+offset_top = 281.0
+offset_right = 669.0
+offset_bottom = 403.0
+texture = SubResource("GradientTexture2D_h07gw")
 
 [node name="Button" type="Button" parent="UI/UpgradeMenu/Control"]
 layout_mode = 1
