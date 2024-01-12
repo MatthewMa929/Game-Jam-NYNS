@@ -1,13 +1,13 @@
 extends CharacterBody2D
 
-#make worm move past the player, attack state goes through player's last position, then breifly goes to hover and tries to attack again
+#worm hovers the player around a circle, tries to go through the player to attack, then goes back into its travel or hover state
 const SPEED = 280.0
 
 @onready var player = $"../Player"
 @onready var head = $Head
 @onready var body = $Body
 @onready var tail = $Tail
-@onready var spikes = $Spikes
+@onready var spikes = $Body/Spikes
 
 enum {
 	TRAVEL,
@@ -25,6 +25,7 @@ var circle_angle = 0
 var pos = Vector2(0, 0)
 var worm_pos = Vector2(0, 0)
 var in_area = false
+var curr_part = head
 @onready var hover_timer = $HoverTimer
 @onready var travel_timer = $TravelTimer
 
@@ -73,7 +74,13 @@ func move(target, delta):
 	#delta * 2.5 -> delta * 3
 	var steering = (desired_velocity - velocity) * delta * 3
 	velocity += steering
+	rotate_part(head, target, delta)
 	move_and_slide()
+	
+func rotate_part(part, target, delta):
+	var direction = (target - global_position).normalized() 
+	var angleTo = part.transform.x.angle_to(direction)
+	part.rotate(sign(angleTo) * min(delta * 3, abs(angleTo)))
 	
 func _on_sense_area_entered(area):
 	hover_timer.start()
