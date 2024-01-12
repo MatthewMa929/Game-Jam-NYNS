@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{06549065-3756-D313-DE50-B3A17B63DC05}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{01F063C9-C049-3C8A-56E1-73F448F1E9A7}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -19,13 +19,17 @@
 				</AudioDevices>
 			</Plugins>
 			<Busses>
+				<Bus Id="978636652" Name="Sound Effects"/>
+				<Bus Id="1973600711" Name="Environmental"/>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
+				<Bus Id="3991942870" Name="Music"/>
 			</Busses>
 			<GameParameters>
-				<GameParameter Id="2415836739" Name="Volume"/>
+				<GameParameter Id="1006694123" Name="Music_Volume"/>
+				<GameParameter Id="1564184899" Name="SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CD6E1B47-8353-1F84-BC02-0BCCA862B3EC}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{496A9363-A5AC-949D-9282-7703E644552F}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -78,9 +82,9 @@
 				<Event Id="2118051910" Name="Stop_Drill_Mining"/>
 			</Events>
 			<GameParameters>
-				<GameParameter Id="2415836739" Name="Volume"/>
+				<GameParameter Id="1006694123" Name="Music_Volume"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{4FAE28E7-3174-0EF1-CBAB-ECAF78D0439A}</FileHash>
+	<FileHash>{27D184E1-43D3-5462-6CD5-F96C3F4EA16F}</FileHash>
 </SoundBanksInfo>

@@ -14,6 +14,8 @@ extends Node
 
 var look_vector := Vector2.ZERO
 var block_destroyed_timer : Timer
+var mining_check := false
+
 
 
 func _ready():
@@ -24,6 +26,7 @@ func _ready():
 		anim["parameters/claw/playback"].travel(&"idle")
 	)
 	add_child(block_destroyed_timer)
+	Wwise.register_game_obj(self, "MiningSFX")
 
 
 func _process(delta : float):
@@ -42,8 +45,14 @@ func _process(delta : float):
 		hands_item.position = Vector2(randf() - 0.5, randf() - 0.5) * drill_shake
 
 	backpack.position = Vector2(randf() - 0.5, randf() - 0.5) * backpack_shake
+	if (block_destroyed_timer.time_left == 0): 
+		Wwise.post_event("Stop_Drill_Mining", self)
+		mining_check = false
 
 
 func _on_player_block_destroyed():
 	block_destroyed_timer.start(drill_shake_time)
+	if (mining_check) == false:
+		Wwise.post_event("Drill_Mining", self)
+		mining_check = true
 	anim["parameters/claw/playback"].travel(&"dig")

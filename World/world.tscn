@@ -4760,4 +4760,20 @@ script = SubResource("GDScript_p1hi3")
 
 [node name="Worm" parent="." instance=ExtResource("11_8mjb1")]
 
+[node name="AkBank" type="AkBank" parent="."]
+bank = {
+"id": 3161908922,
+"name": "Main"
+}
+load_on = 1
+
+[node name="AkListener2D" type="AkListener2D" parent="."]
+
+[node name="Music" type="AkEvent2D" parent="."]
+event = {
+"id": 1479112770,
+"name": "Play_Cave_OST"
+}
+trigger_on = 2
+
 [connection signal="pressed" from="UI/UpgradeMenu/Control/Button" to="UI/UpgradeMenu" method="hide"]
