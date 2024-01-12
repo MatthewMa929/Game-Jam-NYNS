@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c0sna7behoynp"]
+[gd_scene load_steps=29 format=3 uid="uid://c0sna7behoynp"]
 
 [ext_resource type="Texture2D" uid="uid://c5alm7txybtk1" path="res://Sprites/DirtBackground.png" id="1_sy1vs"]
 [ext_resource type="Texture2D" uid="uid://bhokt5kekyjmt" path="res://Sprites/Dirt.png" id="1_tx6b7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dc5nnd60uva6d" path="res://Sprites/UI/HUDAtlas.png" id="6_tcd21"]
 [ext_resource type="Texture2D" uid="uid://ddurr7ss2qi5a" path="res://Sprites/UI/DepthM.png" id="7_jwy0o"]
 [ext_resource type="Texture2D" uid="uid://of7oj3hwkbco" path="res://Sprites/UI/InventoryPanel.png" id="7_q5hcl"]
+[ext_resource type="PackedScene" uid="uid://c7y5u0o5pemh7" path="res://World/UI/Oxygen.tscn" id="13_24xb5"]
 
 [sub_resource type="Gradient" id="Gradient_y1dpi"]
 interpolation_mode = 2
@@ -4273,7 +4274,7 @@ region_enabled = true
 region_rect = Rect2(0, 0, 4096, 4096)
 
 [node name="Player" parent="." instance=ExtResource("1_yd6rp")]
-position = Vector2(1106, -137)
+position = Vector2(739, 760)
 metadata/_edit_group_ = true
 
 [node name="Darkness" type="Sprite2D" parent="Player"]
@@ -4323,7 +4324,13 @@ offset_bottom = 347.0
 texture = SubResource("AtlasTexture_ygk7c")
 stretch_mode = 2
 
-[node name="Label5" type="Label" parent="UI/Control/TopleftHUD"]
+[node name="Oxygen" parent="UI/Control/TopleftHUD" instance=ExtResource("13_24xb5")]
+offset_left = 198.0
+offset_top = 114.0
+offset_right = 198.0
+offset_bottom = 114.0
+
+[node name="OxygenLines" type="Label" parent="UI/Control/TopleftHUD"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 1
 offset_left = 112.0
