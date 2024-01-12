@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7y5u0o5pemh7"]
+[gd_scene load_steps=5 format=3 uid="uid://c7y5u0o5pemh7"]
 
 [ext_resource type="Script" path="res://World/UI/Oxygen.gd" id="1_q1tdr"]
+[ext_resource type="Texture2D" uid="uid://dc5nnd60uva6d" path="res://Sprites/UI/HUDAtlas.png" id="2_6ocy4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_um8hm"]
+atlas = ExtResource("2_6ocy4")
+region = Rect2(344, 0, 112, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usru1"]
+atlas = ExtResource("2_6ocy4")
+region = Rect2(344, 56, 48, 32)
 
 [node name="Oxygen" type="Range"]
 _import_path = NodePath("")
@@ -62,12 +71,18 @@ mouse_default_cursor_shape = 0
 theme = null
 theme_type_variation = &""
 min_value = 0.0
-max_value = 100.0
+max_value = 200.0
 step = 1.0
 page = 0.0
-value = 0.0
+value = 200.0
 exp_edit = false
 rounded = false
 allow_greater = false
 allow_lesser = false
 script = ExtResource("1_q1tdr")
+tick_radius = 72.0
+angle_full = 45.0
+angle_empty = -225.0
+hand_tex = SubResource("AtlasTexture_um8hm")
+hand_tex_origin = Vector2(-79, -58)
+tick_tex = SubResource("AtlasTexture_usru1")
