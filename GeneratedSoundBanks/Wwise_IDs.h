@@ -14,8 +14,17 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID DRILL_MINING = 737866587U;
+        static const AkUniqueID PLAY_CAVE_OST = 1479112770U;
+        static const AkUniqueID PLAY_COLONY_OST = 3238935255U;
+        static const AkUniqueID STOP_CAVE_OST = 2296272484U;
+        static const AkUniqueID STOP_COLONY_OST = 2414364521U;
         static const AkUniqueID STOP_DRILL_MINING = 2118051910U;
     } // namespace EVENTS
+
+    namespace GAME_PARAMETERS
+    {
+        static const AkUniqueID VOLUME = 2415836739U;
+    } // namespace GAME_PARAMETERS
 
     namespace BANKS
     {

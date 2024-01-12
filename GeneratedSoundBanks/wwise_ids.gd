@@ -2,12 +2,20 @@ class_name AK
 
 class EVENTS:
 
-	const DRILL_MINING = 737866587
 	const STOP_DRILL_MINING = 2118051910
+	const DRILL_MINING = 737866587
+	const SET_GAME_PARAMETER_VOLUME = 709241417
+	const STOP_CAVE_OST = 2296272484
+	const PLAY_CAVE_OST = 1479112770
+	const PLAY_COLONY_OST = 3238935255
 
 	const _dict = {
+		"Stop_Drill_Mining": STOP_DRILL_MINING,
 		"Drill_Mining": DRILL_MINING,
-		"Stop_Drill_Mining": STOP_DRILL_MINING
+		"Set_Game_Parameter_Volume": SET_GAME_PARAMETER_VOLUME,
+		"Stop_Cave_OST": STOP_CAVE_OST,
+		"Play_Cave_OST": PLAY_CAVE_OST,
+		"Play_Colony_OST": PLAY_COLONY_OST
 	}
 
 class STATES:
@@ -20,7 +28,11 @@ class SWITCHES:
 
 class GAME_PARAMETERS:
 
-	const _dict = {}
+	const VOLUME = 2415836739
+
+	const _dict = {
+		"Volume": VOLUME
+	}
 
 class TRIGGERS:
 
