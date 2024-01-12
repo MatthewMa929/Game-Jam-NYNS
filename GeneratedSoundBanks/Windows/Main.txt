@@ -1,10 +1,19 @@
 Event	ID	Name			Wwise Object Path	Notes
-	737866587	Drill_Mining			\Default Work Unit\Drill_Mining	
-	2118051910	Stop_Drill_Mining			\Default Work Unit\Stop_Drill_Mining	
+	737866587	Drill_Mining			\Default Work Unit\Drill Mining SFX\Drill_Mining	
+	1479112770	Play_Cave_OST			\Default Work Unit\CaveMusic Events\Play_Cave_OST	
+	2118051910	Stop_Drill_Mining			\Default Work Unit\Drill Mining SFX\Stop_Drill_Mining	
+	2296272484	Stop_Cave_OST			\Default Work Unit\CaveMusic Events\Stop_Cave_OST	
+	2414364521	Stop_Colony_OST			\Default Work Unit\Cave Colony OST\Stop_Colony_OST	
+	3238935255	Play_Colony_OST			\Default Work Unit\Cave Colony OST\Play_Colony_OST	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	2415836739	Volume			\Default Work Unit\Volume	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	141542728	drill_Engine	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\drill_Engine_891A6D51.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Drill Mining\drill_Engine		314380
-	237732258	rockCrumbling_01	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\rockCrumbling_F5BFE4AF.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Rocks Crumbling\rockCrumbling_01		82916
-	874823903	rockCrumbling_02	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\rockCrumbling_9FD10CCB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Rocks Crumbling\rockCrumbling_02		79264
-	945131514	rockCrumbling	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\rockCrumbling_36AD4AA9.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Rocks Crumbling\rockCrumbling		65864
+	141542728	drill_Engine	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\drill_Engine_E5031137.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Drill Mining\drill_Engine		314380
+	237732258	rockCrumbling_01	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\rockCrumbling_7C021990.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Drill Mining\Rocks Crumbling\rockCrumbling_01		82916
+	600191496	CaveExplorationLoop	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\CaveExplorationLoop_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\CaveExplorationPlaylist\CaveExplorationLoop\CaveExplorationLoop		14112096
+	786917751	CaveColonyShop	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\CaveColonyShop_FBC78EF0.wem		\Interactive Music Hierarchy\Default Work Unit\CaveColonyPlaylist\CaveColonyShop\CaveColonyShop		4015648
+	874823903	rockCrumbling_02	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\rockCrumbling_4536527D.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Drill Mining\Rocks Crumbling\rockCrumbling_02		79264
+	945131514	rockCrumbling	C:\Program Files (x86)\Audiokinetic\Wwise 2023.1.0.8367\Projects\New Year New Skills Mining Game\.cache\Windows\SFX\rockCrumbling_DBDE8BB4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Drill Mining\Drill Mining\Rocks Crumbling\rockCrumbling		65864
 

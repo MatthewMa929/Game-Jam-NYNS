@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{B6CBD692-12EC-CDBA-0932-48F63C40C91F}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{06549065-3756-D313-DE50-B3A17B63DC05}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -21,26 +21,37 @@
 			<Busses>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
+			<GameParameters>
+				<GameParameter Id="2415836739" Name="Volume"/>
+			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{56A94D01-F627-BA90-515C-9AC8D11A3F93}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{CD6E1B47-8353-1F84-BC02-0BCCA862B3EC}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
 				<File Id="141542728" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>drill_Engine.wav</ShortName>
-					<CachePath>SFX/drill_Engine_891A6D51.wem</CachePath>
+					<CachePath>SFX/drill_Engine_E5031137.wem</CachePath>
 				</File>
 				<File Id="237732258" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>rockCrumbling.wav</ShortName>
-					<CachePath>SFX/rockCrumbling_F5BFE4AF.wem</CachePath>
+					<CachePath>SFX/rockCrumbling_7C021990.wem</CachePath>
+				</File>
+				<File Id="600191496" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>CaveExplorationLoop.wav</ShortName>
+					<CachePath>SFX/CaveExplorationLoop_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="786917751" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>CaveColonyShop.wav</ShortName>
+					<CachePath>SFX/CaveColonyShop_FBC78EF0.wem</CachePath>
 				</File>
 				<File Id="874823903" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>rockCrumbling.wav</ShortName>
-					<CachePath>SFX/rockCrumbling_9FD10CCB.wem</CachePath>
+					<CachePath>SFX/rockCrumbling_4536527D.wem</CachePath>
 				</File>
 				<File Id="945131514" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>rockCrumbling.wav</ShortName>
-					<CachePath>SFX/rockCrumbling_36AD4AA9.wem</CachePath>
+					<CachePath>SFX/rockCrumbling_DBDE8BB4.wem</CachePath>
 				</File>
 			</Media>
 			<Events>
@@ -52,9 +63,24 @@
 						<MediaRef Id="945131514"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="1479112770" Name="Play_Cave_OST">
+					<MediaRefs>
+						<MediaRef Id="600191496"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3238935255" Name="Play_Colony_OST">
+					<MediaRefs>
+						<MediaRef Id="786917751"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2296272484" Name="Stop_Cave_OST"/>
+				<Event Id="2414364521" Name="Stop_Colony_OST"/>
 				<Event Id="2118051910" Name="Stop_Drill_Mining"/>
 			</Events>
+			<GameParameters>
+				<GameParameter Id="2415836739" Name="Volume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{C2ACFE39-1B97-2E92-7C9A-C2AE9F2BFD0E}</FileHash>
+	<FileHash>{4FAE28E7-3174-0EF1-CBAB-ECAF78D0439A}</FileHash>
 </SoundBanksInfo>
