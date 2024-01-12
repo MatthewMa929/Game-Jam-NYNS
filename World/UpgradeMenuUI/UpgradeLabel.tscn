@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c76bxy2rh8fbf"]
+
+[ext_resource type="Script" path="res://World/UpgradeMenuUI/UpgradeLabel.gd" id="1_51lak"]
+
+[node name="UpgradeLabel" type="HBoxContainer"]
+script = ExtResource("1_51lak")
+text = "Oxygen"
+max_value = 4
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Oxygen"
+
+[node name="Progress" type="Label" parent="."]
+self_modulate = Color(0.662745, 0.662745, 0.662745, 1)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0/4"

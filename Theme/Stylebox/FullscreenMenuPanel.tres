@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c6btq760grcv7"]
+
+[ext_resource type="Texture2D" uid="uid://bov20h0wbmgvi" path="res://Sprites/UI/BasicPanel.png" id="1_o80c5"]
+
+[resource]
+content_margin_left = 36.0
+content_margin_top = 42.0
+content_margin_right = 32.0
+content_margin_bottom = 36.0
+texture = ExtResource("1_o80c5")
+texture_margin_left = 112.0
+texture_margin_top = 136.0
+texture_margin_right = 104.0
+texture_margin_bottom = 112.0

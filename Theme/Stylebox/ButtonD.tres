@@ -1,0 +1,11 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://c1pxr1i8e0i55"]
+
+[ext_resource type="Texture2D" uid="uid://d3bwb1udg1j0v" path="res://Sprites/UI/ButtonAtlas.png" id="1_b0t3v"]
+
+[resource]
+texture = ExtResource("1_b0t3v")
+texture_margin_left = 16.0
+texture_margin_top = 8.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+region_rect = Rect2(48, 48, 48, 48)

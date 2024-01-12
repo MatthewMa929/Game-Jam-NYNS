@@ -1,0 +1,70 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy4qqjx6kwp5f"]
+
+[ext_resource type="Script" path="res://World/UpgradeMenuUI/CostButton.gd" id="1_v7smg"]
+[ext_resource type="Texture2D" uid="uid://bqo1fq5ccargr" path="res://Sprites/Ores.png" id="2_b0ltk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_npcnw"]
+font_size = 18
+outline_color = Color(0.529412, 0.321569, 0.12549, 1)
+shadow_color = Color(0.529412, 0.321569, 0.12549, 1)
+shadow_offset = Vector2(0, -3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv6n6"]
+atlas = ExtResource("2_b0ltk")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mosm"]
+atlas = ExtResource("2_b0ltk")
+region = Rect2(0, 0, 32, 32)
+
+[node name="CostButton" type="Button"]
+custom_minimum_size = Vector2(192, 42)
+offset_right = 256.0
+offset_bottom = 42.0
+size_flags_horizontal = 3
+script = ExtResource("1_v7smg")
+resource_atlas = ExtResource("2_b0ltk")
+resource_frame_size = Vector2(32, 32)
+resource1_index = 1
+resource1_amount = 541
+resource2_amount = 884
+
+[node name="Box" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 6.0
+offset_right = -6.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Box"]
+layout_mode = 2
+text = "Buy"
+label_settings = SubResource("LabelSettings_npcnw")
+
+[node name="Res1Icon" type="TextureRect" parent="Box"]
+custom_minimum_size = Vector2(30.8, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_lv6n6")
+stretch_mode = 5
+
+[node name="Res1Amount" type="Label" parent="Box"]
+layout_mode = 2
+text = "541"
+label_settings = SubResource("LabelSettings_npcnw")
+
+[node name="Res2Icon" type="TextureRect" parent="Box"]
+custom_minimum_size = Vector2(30.8, 0)
+layout_mode = 2
+texture = SubResource("AtlasTexture_5mosm")
+stretch_mode = 5
+
+[node name="Res2Amount" type="Label" parent="Box"]
+layout_mode = 2
+text = "884"
+label_settings = SubResource("LabelSettings_npcnw")
