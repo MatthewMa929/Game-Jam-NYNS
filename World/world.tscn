@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c0sna7behoynp"]
+[gd_scene load_steps=43 format=3 uid="uid://c0sna7behoynp"]
 
 [ext_resource type="Texture2D" uid="uid://c5alm7txybtk1" path="res://Sprites/DirtBackground.png" id="1_sy1vs"]
 [ext_resource type="Texture2D" uid="uid://bhokt5kekyjmt" path="res://Sprites/Dirt.png" id="1_tx6b7"]
@@ -4287,21 +4287,6 @@ outline_color = Color(0.529412, 0.321569, 0.12549, 1)
 shadow_color = Color(0.529412, 0.321569, 0.12549, 1)
 shadow_offset = Vector2(0, -3)
 
-[sub_resource type="Animation" id="Animation_rbemk"]
-resource_name = "new_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Mask/Peeper:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(0.25, 1),
-"update": 0,
-"values": [Vector2(157, 274.14), Vector2(157, 141)]
-}
-
 [sub_resource type="Animation" id="Animation_v77ut"]
 length = 0.001
 tracks/0/type = "value"
@@ -4315,6 +4300,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(170, 141)]
+}
+
+[sub_resource type="Animation" id="Animation_rbemk"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask/Peeper:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(157, 274.14), Vector2(157, 141)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4ca5l"]
