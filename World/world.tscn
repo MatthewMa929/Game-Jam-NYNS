@@ -4411,20 +4411,8 @@ label_settings = SubResource("LabelSettings_nhr8e")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DepthBar" type="Control" parent="UI/Control"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -78.0
-offset_top = 62.0
-offset_right = -78.0
-offset_bottom = -74.0
-grow_horizontal = 0
-grow_vertical = 2
 
-[node name="ProgressBar" type="ProgressBar" parent="UI/Control/DepthBar"]
+[node name="depthbar" type="ProgressBar" parent="UI/Control/DepthBar"]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
@@ -4438,6 +4426,7 @@ theme_override_styles/fill = SubResource("StyleBoxTexture_f4vnw")
 value = 57.84
 fill_mode = 3
 show_percentage = false
+script = ExtResource("11_r0s28")
 
 [node name="Bottom" type="TextureRect" parent="UI/Control/DepthBar"]
 layout_mode = 1
@@ -4455,7 +4444,7 @@ grow_vertical = 0
 texture = SubResource("AtlasTexture_5t5yc")
 stretch_mode = 2
 
-[node name="Label5" type="Label" parent="UI/Control/DepthBar/Bottom"]
+[node name="depth" type="Label" parent="UI/Control/DepthBar/Bottom"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 1
 anchors_preset = 15
@@ -4472,6 +4461,7 @@ text = "9999m"
 label_settings = SubResource("LabelSettings_nhr8e")
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("11_cr3ny")
 
 [node name="Inventory" type="NinePatchRect" parent="UI/Control"]
 layout_mode = 1
@@ -4501,61 +4491,65 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 2
 
-[node name="TextureRect" type="TextureRect" parent="UI/Control/Inventory/Grid"]
+[node name="gemstex" type="TextureRect" parent="UI/Control/Inventory/Grid"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_hmes1")
+texture = ExtResource("14_x7u28")
 
-[node name="Label" type="Label" parent="UI/Control/Inventory/Grid"]
+[node name="gemscount" type="Label" parent="UI/Control/Inventory/Grid"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "124"
+text = "0"
 label_settings = SubResource("LabelSettings_pnbl0")
 horizontal_alignment = 2
+script = ExtResource("15_h6v4v")
 
-[node name="TextureRect2" type="TextureRect" parent="UI/Control/Inventory/Grid"]
+[node name="oxyoretex" type="TextureRect" parent="UI/Control/Inventory/Grid"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_hmes1")
+texture = ExtResource("16_p2ipo")
 
-[node name="Label2" type="Label" parent="UI/Control/Inventory/Grid"]
+[node name="oxyorecount" type="Label" parent="UI/Control/Inventory/Grid"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "124"
+text = "0"
 label_settings = SubResource("LabelSettings_pnbl0")
 horizontal_alignment = 2
+script = ExtResource("17_0rtek")
 
-[node name="TextureRect3" type="TextureRect" parent="UI/Control/Inventory/Grid"]
+[node name="goldtex" type="TextureRect" parent="UI/Control/Inventory/Grid"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_hmes1")
+texture = ExtResource("18_e8neg")
 
-[node name="Label3" type="Label" parent="UI/Control/Inventory/Grid"]
+[node name="goldcount" type="Label" parent="UI/Control/Inventory/Grid"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "124"
+text = "0"
 label_settings = SubResource("LabelSettings_pnbl0")
 horizontal_alignment = 2
+script = ExtResource("19_oep8f")
 
-[node name="TextureRect4" type="TextureRect" parent="UI/Control/Inventory/Grid"]
+[node name="irontex" type="TextureRect" parent="UI/Control/Inventory/Grid"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = SubResource("GradientTexture2D_hmes1")
+texture = ExtResource("20_5uepq")
 
-[node name="Label4" type="Label" parent="UI/Control/Inventory/Grid"]
+[node name="ironcount" type="Label" parent="UI/Control/Inventory/Grid"]
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "124"
+text = "0"
 label_settings = SubResource("LabelSettings_pnbl0")
 horizontal_alignment = 2
+script = ExtResource("21_labyr")
 
 [node name="UpgradeMenu" type="PanelContainer" parent="UI"]
 visible = false
