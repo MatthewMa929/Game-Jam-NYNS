@@ -17,6 +17,17 @@
 [ext_resource type="PackedScene" uid="uid://cy4qqjx6kwp5f" path="res://World/UpgradeMenuUI/CostButton.tscn" id="14_gxmrj"]
 [ext_resource type="PackedScene" uid="uid://c76bxy2rh8fbf" path="res://World/UpgradeMenuUI/UpgradeLabel.tscn" id="14_y4w1e"]
 [ext_resource type="Texture2D" uid="uid://ctpckyk4j01qw" path="res://Sprites/UI/UpgradeMenuWindow.png" id="16_fkyms"]
+[ext_resource type="Script" path="res://World/oxygen.gd" id="9_e8dfw"]
+[ext_resource type="Script" path="res://World/depth.gd" id="11_cr3ny"]
+[ext_resource type="Script" path="res://World/depthbar.gd" id="11_r0s28"]
+[ext_resource type="Texture2D" uid="uid://dh8pw28d75n0d" path="res://Sprites/gems.png" id="14_x7u28"]
+[ext_resource type="Script" path="res://World/gemscount.gd" id="15_h6v4v"]
+[ext_resource type="Texture2D" uid="uid://d0jm8cpluhkhp" path="res://Sprites/oxyore.png" id="16_p2ipo"]
+[ext_resource type="Script" path="res://World/oxyorecount.gd" id="17_0rtek"]
+[ext_resource type="Texture2D" uid="uid://1cl2jn3fa8ba" path="res://Sprites/gold.png" id="18_e8neg"]
+[ext_resource type="Script" path="res://World/goldcount.gd" id="19_oep8f"]
+[ext_resource type="Texture2D" uid="uid://bvgii4u32pxyn" path="res://Sprites/iron.png" id="20_5uepq"]
+[ext_resource type="Script" path="res://World/ironcount.gd" id="21_labyr"]
 
 [sub_resource type="Gradient" id="Gradient_y1dpi"]
 interpolation_mode = 2
