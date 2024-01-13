@@ -4199,15 +4199,6 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_doxqc")
 sources/0 = SubResource("TileSetAtlasSource_hru0s")
 sources/1 = SubResource("TileSetAtlasSource_5x1f6")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5tecb"]
-texture = ExtResource("10_s824x")
-texture_region_size = Vector2i(512, 512)
-0:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_l6i1a"]
-tile_size = Vector2i(128, 128)
-sources/0 = SubResource("TileSetAtlasSource_5tecb")
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6t7yl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7chyq"]
@@ -4282,6 +4273,15 @@ texture_region_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_6t7yl")
 sources/0 = SubResource("TileSetAtlasSource_7chyq")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5tecb"]
+texture = ExtResource("10_s824x")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l6i1a"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_5tecb")
 
 [sub_resource type="Gradient" id="Gradient_ugvou"]
 interpolation_mode = 2
@@ -4438,13 +4438,14 @@ position = Vector2(-1, 1)
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_tfh8p")
 script = ExtResource("4_d6pwv")
-light_radius = 128.0
+light_radius = 200.0
 soft_ring = 48.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.8, 0.8)
 limit_left = 0
 limit_top = -512
+limit_right = 3200
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
@@ -4457,6 +4458,7 @@ o2_low_fullscreen = NodePath("../../UI/Dark")
 o2_max = 40.0
 
 [node name="TetherPlacer" type="Area2D" parent="Player" node_paths=PackedStringArray("place_at", "count_label")]
+self_modulate = Color(0.152941, 0.486275, 0.780392, 0.619608)
 script = ExtResource("4_qdwvv")
 tether_scene = ExtResource("29_458ob")
 place_at = NodePath("../../OxygenTethers")
@@ -4488,15 +4490,15 @@ layer_1/z_index = -1
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("5_r8xhd")
 
-[node name="RevealableDarkness" type="TileMap" parent="."]
-tile_set = SubResource("TileSet_l6i1a")
-format = 2
-script = ExtResource("13_oluvf")
-
 [node name="Ores" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_b0r1q")
 format = 2
 script = ExtResource("6_i1vhs")
+
+[node name="RevealableDarkness" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_l6i1a")
+format = 2
+script = ExtResource("13_oluvf")
 
 [node name="OxygenTethers" type="Node" parent="."]
 
