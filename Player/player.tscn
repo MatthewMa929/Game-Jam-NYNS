@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dxgyw2gl5mrt3"]
+[gd_scene load_steps=17 format=3 uid="uid://dxgyw2gl5mrt3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_y7tub"]
 [ext_resource type="Texture2D" uid="uid://bhil1e6itrt0f" path="res://Sprites/Character.png" id="2_46mrk"]
@@ -151,9 +151,6 @@ nodes/float/node = SubResource("AnimationNodeAnimation_lmsqb")
 nodes/float/position = Vector2(26.6667, 373.333)
 nodes/output/position = Vector2(320, 133.333)
 node_connections = [&"Add2", 0, &"claw", &"Add2", 1, &"float", &"output", 0, &"Add2"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_u6ty2"]
-radius = 500.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y7tub")

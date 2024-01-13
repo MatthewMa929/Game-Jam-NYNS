@@ -1,26 +1,62 @@
-[gd_scene load_steps=5 format=3 uid="uid://76gsp4ebwiuc"]
+[gd_scene load_steps=6 format=3 uid="uid://76gsp4ebwiuc"]
 
-[ext_resource type="Script" path="res://Enemies/Worm.gd" id="1_mh472"]
+[ext_resource type="Script" path="res://Enemies/worm.gd" id="1_hlblv"]
 [ext_resource type="Texture2D" uid="uid://b0apidial1asc" path="res://Sprites/Worm.png" id="2_wf82b"]
 [ext_resource type="PackedScene" uid="uid://bxno88hy1smwd" path="res://Enemies/worm_body.tscn" id="3_qldn8"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xgnng"]
-radius = 100.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn7ld"]
+radius = 62.5
+height = 170.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n05tv"]
+radius = 62.5
+height = 170.0
 
 [node name="Worm" type="CharacterBody2D"]
-scale = Vector2(0.4, 0.4)
-script = ExtResource("1_mh472")
-
-[node name="Head" type="Sprite2D" parent="."]
-z_index = 2
-position = Vector2(4, 12)
 rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_hlblv")
+
+[node name="Head" type="CharacterBody2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="SprHead" type="Sprite2D" parent="Head"]
+z_index = 2
+position = Vector2(7.15256e-07, 0)
+rotation = 3.14159
+scale = Vector2(1, 1)
 texture = ExtResource("2_wf82b")
 region_enabled = true
 region_rect = Rect2(213.99, 6.80727, 131.433, 209.736)
 
-[node name="WormBody" parent="." instance=ExtResource("3_qldn8")]
+[node name="SprEye" type="Sprite2D" parent="Head"]
+z_index = 3
+z_as_relative = false
+position = Vector2(-10, 2.5)
+rotation = 3.14159
+texture = ExtResource("2_wf82b")
+region_enabled = true
+region_rect = Rect2(590.211, 22.1105, 91.6604, 174.305)
+
+[node name="Sense" type="Area2D" parent="Head"]
 scale = Vector2(1, 1)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Sense"]
+position = Vector2(-2.18557e-07, -2.5)
+shape = SubResource("CapsuleShape2D_pn7ld")
+
+[node name="WormBody" parent="." instance=ExtResource("3_qldn8")]
+position = Vector2(150, 2.49999)
+
+[node name="Hitbox" type="Area2D" parent="WormBody"]
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WormBody/Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_n05tv")
 
 [node name="Tail" type="Sprite2D" parent="."]
 visible = false
@@ -31,25 +67,15 @@ texture = ExtResource("2_wf82b")
 region_enabled = true
 region_rect = Rect2(4.42994, 226.638, 298.27, 148.609)
 
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-
-[node name="Sense" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sense"]
-shape = SubResource("CircleShape2D_xgnng")
-
 [node name="HoverTimer" type="Timer" parent="."]
 wait_time = 6.0
 
 [node name="TravelTimer" type="Timer" parent="."]
 wait_time = 4.0
 
-[node name="BodyTimer" type="Timer" parent="."]
-wait_time = 0.2
-
-[connection signal="area_entered" from="Sense" to="." method="_on_sense_area_entered"]
-[connection signal="area_exited" from="Sense" to="." method="_on_sense_area_exited"]
+[connection signal="area_entered" from="Head/Sense" to="." method="_on_sense_area_entered"]
+[connection signal="area_exited" from="Head/Sense" to="." method="_on_sense_area_exited"]
+[connection signal="area_entered" from="WormBody/Hitbox" to="WormBody" method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="WormBody/Hitbox" to="WormBody" method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_hover_timer_timeout"]
 [connection signal="timeout" from="TravelTimer" to="." method="_on_travel_timer_timeout"]

@@ -20,6 +20,8 @@ enum {
 
 var state = TRAVEL
 var rng
+var max = 3
+var curr = 0
 var angle = 0
 var randomnum = 0
 var radius = 500
@@ -27,29 +29,26 @@ var circle_angle = 0
 var pos = Vector2(0, 0)
 var worm_pos = Vector2(0, 0)
 var in_area = false
-var curr_part = head
 var part_list = []
 
-signal follow_head(position, rotation)
-
 func _ready():
-	#create_worm()
+	body.part = head
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	randomnum = rng.randf()
 	hover_timer.one_shot = true
 	travel_timer.one_shot = true
-	self.follow_head.connect(body.follow)
 
 func _physics_process(delta):
 	if Input.is_action_just_released('mouse_left'):
 		print(state)
+		print(head.global_position)
 	match state:
 		TRAVEL:
 			if in_area:
-				move(get_circle_position(player.position, radius + 600), delta)
+				move(get_circle_position(player.global_position, radius + 600), head, delta)
 			else:
-				move(get_circle_position(player.position, radius), delta)
+				move(get_circle_position(player.global_position, radius), head, delta)
 				if travel_timer.time_left <= 0:
 					travel_timer.start()
 		HOVER:
@@ -59,10 +58,10 @@ func _physics_process(delta):
 			angle += 0.01
 			worm_pos.x = pos.x + radius * cos(angle)
 			worm_pos.y = pos.y + radius * sin(angle)
-			move(Vector2(worm_pos.x, worm_pos.y), delta)
+			move(Vector2(worm_pos.x, worm_pos.y), head, delta)
 		ATTACK:
-			move(pos, delta) 
-			if abs(pos - position) < Vector2(3, 3):
+			move(pos, head, delta) 
+			if abs(pos - head.global_position) < Vector2(3, 3):
 				randomnum = rng.randf()
 				if randomnum > 0.5:
 					state = TRAVEL
@@ -77,39 +76,36 @@ func get_circle_position(player_pos, rad):
 
 	return Vector2(x, y)
 	
-func move(target, delta):
-	var direction = (target - global_position).normalized() 
+func move(target, part, delta):
+	var direction = (target - part.global_position).normalized() 
 	var desired_velocity =  direction * SPEED
-	var steering = (desired_velocity - velocity) * delta * 3
-	velocity += steering
-	rotate_part(head, target, delta)
-	move_and_slide()
-	follow_head.emit(position, rotation)
+	var steering = (desired_velocity - part.velocity) * delta * 3
+	part.velocity += steering
+	rotate_part(part, target, delta)
+	part.move_and_slide()
 	
 func rotate_part(part, target, delta):
-	var direction = (target - global_position).normalized() 
+	var direction = (target - part.global_position).normalized() 
 	var angleTo = part.transform.x.angle_to(direction)
 	part.rotate(sign(angleTo) * min(delta * 3, abs(angleTo)))
-	
-func create_worm():
-	for i in range(3):
-		var push = body.duplicate()
-		part_list.append(push)
+
 	
 func _on_sense_area_entered(area):
 	if state != ATTACK:
 		in_area = true
 		state = HOVER
-		pos = player.position
+		pos = player.global_position
 		print('sense')
 	
 func _on_sense_area_exited(area):
 	in_area = false
 	
 func _on_hover_timer_timeout():
-	pos = 2*player.global_position - Vector2(position.x, position.y)
+	pos = 2*player.global_position - Vector2(head.global_position.x, head.global_position.y)
 	state = ATTACK
 
 func _on_travel_timer_timeout():
-	pos = 2*player.global_position - Vector2(position.x, position.y)
+	pos = 2*player.global_position - Vector2(head.global_position.x, head.global_position.y)
 	state = ATTACK
+
+

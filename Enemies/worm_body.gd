@@ -1,23 +1,36 @@
-extends Sprite2D
+extends CharacterBody2D
 
 const SPEED = 280.0
 
-@onready var body_timer = $BodyTimer
-
-signal follow_part(position, rotation)
-
-var pos = Vector2(0, 0)
-var rotate = 0
+@onready var worm = get_parent()
+var part
+var body
+var in_area = false
 
 func _ready():
-	pass 
+	if worm.curr < worm.max:
+		worm.curr += 1
+		body = duplicate()
+		worm.add_child(body)
+		body.part = self
+		print(worm.curr)
+		print(self)
 
-func _process(delta):
-	pass
-	
-func follow(part, new_part):
-	body_timer.start()
+func _physics_process(delta):
+	#move(head.global_position, self, delta)
+	velocity = part.velocity
+	if !in_area:
+		global_position = global_position.move_toward(part.global_position, delta * SPEED)
+		rotate_part(self, part.global_position, delta)
+	#print(global_position, '|', part.global_position)
 
-func _on_body_timer_timeout():
-	position = pos
-	rotation = rotate
+func rotate_part(part, target, delta):
+	var direction = (target - part.global_position).normalized() 
+	var angleTo = part.transform.x.angle_to(direction)
+	part.rotate(sign(angleTo) * min(delta * 3, abs(angleTo)))
+
+func _on_hitbox_area_exited(area):
+	in_area = false
+
+func _on_hitbox_area_entered(area):
+	in_area = true
