@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://c0sna7behoynp"]
+[gd_scene load_steps=68 format=3 uid="uid://c0sna7behoynp"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_kbbh3"]
 [ext_resource type="Texture2D" uid="uid://c5alm7txybtk1" path="res://Sprites/DirtBackground.png" id="1_sy1vs"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://c76bxy2rh8fbf" path="res://World/UpgradeMenuUI/UpgradeLabel.tscn" id="14_y4w1e"]
 [ext_resource type="Script" path="res://World/gemscount.gd" id="15_h6v4v"]
 [ext_resource type="Texture2D" uid="uid://ctpckyk4j01qw" path="res://Sprites/UI/UpgradeMenuWindow.png" id="16_fkyms"]
+[ext_resource type="Script" path="res://World/Civilization.gd" id="16_kkd5p"]
 [ext_resource type="Texture2D" uid="uid://d0jm8cpluhkhp" path="res://Sprites/oxyore.png" id="16_p2ipo"]
 [ext_resource type="Script" path="res://World/oxyorecount.gd" id="17_0rtek"]
 [ext_resource type="Texture2D" uid="uid://1cl2jn3fa8ba" path="res://Sprites/gold.png" id="18_e8neg"]
@@ -4499,6 +4500,10 @@ script = ExtResource("6_i1vhs")
 tile_set = SubResource("TileSet_l6i1a")
 format = 2
 script = ExtResource("13_oluvf")
+
+[node name="Civilization" type="TileMap" parent="."]
+format = 2
+script = ExtResource("16_kkd5p")
 
 [node name="OxygenTethers" type="Node" parent="."]
 
