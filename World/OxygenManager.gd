@@ -23,6 +23,7 @@ func _ready():
 	o2_current = o2_max
 	checkpoint_pos = get_parent().global_position
 	Wwise.register_game_obj(self, "OxygenSFX")
+	
 
 func _process(delta):
 	if tether_placer.nearby_tethers.size() > 0:
@@ -41,7 +42,12 @@ func _process(delta):
 		get_parent().iron = ceili(get_parent().iron * remains_on_death)
 		get_parent().oxyore = ceili(get_parent().oxyore * remains_on_death)
 		o2_current = o2_max
-
+	
+	if (o2_current <= o2_max / 2) :
+		Wwise.set_rtpc_value("PlayerOxygen", 49, self)
+		Wwise.post_event("lowOxygen",self)
+	else:
+		Wwise.set_rtpc_value("PlayerOxygen", 50, self)
 	o2_low_vignette.self_modulate.a = smoothstep(0.5, 0.2, o2_current / o2_max)
 	o2_low_fullscreen.self_modulate.a = smoothstep(5, 0, o2_current)
 
