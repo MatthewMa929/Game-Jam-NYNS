@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://76gsp4ebwiuc"]
+[gd_scene load_steps=8 format=3 uid="uid://76gsp4ebwiuc"]
 
 [ext_resource type="Script" path="res://Enemies/worm.gd" id="1_hlblv"]
 [ext_resource type="Texture2D" uid="uid://b0apidial1asc" path="res://Sprites/Worm.png" id="2_wf82b"]
@@ -8,6 +8,10 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn7ld"]
 radius = 62.5
 height = 170.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dsse8"]
+radius = 60.0
+height = 190.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n05tv"]
 radius = 62.5
@@ -44,11 +48,19 @@ collision_layer = 2
 position = Vector2(-2.18557e-07, -2.5)
 shape = SubResource("CapsuleShape2D_pn7ld")
 
+[node name="Hurtbox" type="Area2D" parent="Head"]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Hurtbox"]
+shape = SubResource("CapsuleShape2D_dsse8")
+
 [node name="WormBody" parent="." instance=ExtResource("3_qldn8")]
 position = Vector2(150, 2.49999)
 
 [node name="Hitbox" type="Area2D" parent="WormBody"]
 collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WormBody/Hitbox"]
 rotation = 1.5708

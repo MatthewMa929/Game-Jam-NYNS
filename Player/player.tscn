@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dxgyw2gl5mrt3"]
+[gd_scene load_steps=19 format=3 uid="uid://dxgyw2gl5mrt3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_y7tub"]
 [ext_resource type="Texture2D" uid="uid://bhil1e6itrt0f" path="res://Sprites/Character.png" id="2_46mrk"]
@@ -6,6 +6,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pvp4b"]
 radius = 32.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ifl2"]
+radius = 72.111
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ixxb"]
+radius = 15.0
+height = 58.0
 
 [sub_resource type="Animation" id="Animation_kj6tu"]
 length = 0.001
@@ -257,6 +264,22 @@ texture = ExtResource("2_46mrk")
 offset = Vector2(20, 0)
 region_enabled = true
 region_rect = Rect2(310, 174, 149, 145)
+
+[node name="Hurtbox" type="Area2D" parent="Hands"]
+position = Vector2(100, -4)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hands/Hurtbox"]
+shape = SubResource("CircleShape2D_2ifl2")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(-1, 8)
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_5ixxb")
 
 [node name="AnimationManager" type="Node" parent="." node_paths=PackedStringArray("controller", "eye_l", "eye_r", "hands_item", "backpack", "hscale", "anim")]
 script = ExtResource("3_bcgk6")

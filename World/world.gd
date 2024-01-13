@@ -1,7 +1,7 @@
 extends Node2D
 
-const WIDTH = 1000
-const DEPTH = 5000
+const WIDTH = 200
+var DEPTH = 0
 
 @onready var rng = RandomNumberGenerator.new()
 @onready var dirt = $Dirt

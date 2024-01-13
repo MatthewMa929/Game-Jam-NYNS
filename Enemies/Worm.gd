@@ -24,7 +24,7 @@ var max = 4
 var curr = 0
 var angle = 0
 var randomnum = 0
-var hp = 500
+var hp = 300
 var radius = 700
 var circle_angle = 0
 var pos = Vector2(0, 0)
@@ -56,7 +56,6 @@ func _physics_process(delta):
 		hp += -1
 	if hp == 0:
 		queue_free()
-		print('dead')
 	match state:
 		TRAVEL:
 			if in_area:
@@ -126,7 +125,6 @@ func _on_travel_timer_timeout():
 
 func _on_hitbox_area_entered(area):
 	taking_dmg = true
-	print('hit')
 
 func _on_hitbox_area_exited(area):
 	taking_dmg = false
