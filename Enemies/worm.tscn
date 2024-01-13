@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://76gsp4ebwiuc"]
+[gd_scene load_steps=7 format=3 uid="uid://76gsp4ebwiuc"]
 
 [ext_resource type="Script" path="res://Enemies/worm.gd" id="1_hlblv"]
 [ext_resource type="Texture2D" uid="uid://b0apidial1asc" path="res://Sprites/Worm.png" id="2_wf82b"]
 [ext_resource type="PackedScene" uid="uid://bxno88hy1smwd" path="res://Enemies/worm_body.tscn" id="3_qldn8"]
+[ext_resource type="Script" path="res://Enemies/worm_body.gd" id="4_tj7cu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pn7ld"]
 radius = 62.5
@@ -18,13 +19,11 @@ scale = Vector2(0.4, 0.4)
 script = ExtResource("1_hlblv")
 
 [node name="Head" type="CharacterBody2D" parent="."]
-scale = Vector2(1, 1)
 
 [node name="SprHead" type="Sprite2D" parent="Head"]
 z_index = 2
 position = Vector2(7.15256e-07, 0)
 rotation = 3.14159
-scale = Vector2(1, 1)
 texture = ExtResource("2_wf82b")
 region_enabled = true
 region_rect = Rect2(213.99, 6.80727, 131.433, 209.736)
@@ -39,7 +38,6 @@ region_enabled = true
 region_rect = Rect2(590.211, 22.1105, 91.6604, 174.305)
 
 [node name="Sense" type="Area2D" parent="Head"]
-scale = Vector2(1, 1)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Sense"]
@@ -50,18 +48,18 @@ shape = SubResource("CapsuleShape2D_pn7ld")
 position = Vector2(150, 2.49999)
 
 [node name="Hitbox" type="Area2D" parent="WormBody"]
-scale = Vector2(1, 1)
 collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WormBody/Hitbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_n05tv")
 
-[node name="Tail" type="Sprite2D" parent="."]
-visible = false
-z_index = 1
-position = Vector2(390, 25)
+[node name="Tail" type="CharacterBody2D" parent="."]
+position = Vector2(0, 3.8147e-06)
+script = ExtResource("4_tj7cu")
+
+[node name="SprTail" type="Sprite2D" parent="Tail"]
+position = Vector2(85.0001, -7.62939e-06)
 rotation = 0.00621772
 texture = ExtResource("2_wf82b")
 region_enabled = true
@@ -75,7 +73,7 @@ wait_time = 4.0
 
 [connection signal="area_entered" from="Head/Sense" to="." method="_on_sense_area_entered"]
 [connection signal="area_exited" from="Head/Sense" to="." method="_on_sense_area_exited"]
-[connection signal="area_entered" from="WormBody/Hitbox" to="WormBody" method="_on_hitbox_area_entered"]
-[connection signal="area_exited" from="WormBody/Hitbox" to="WormBody" method="_on_hitbox_area_exited"]
+[connection signal="area_entered" from="WormBody/Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="WormBody/Hitbox" to="." method="_on_hitbox_area_exited"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_hover_timer_timeout"]
 [connection signal="timeout" from="TravelTimer" to="." method="_on_travel_timer_timeout"]

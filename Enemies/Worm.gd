@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 #worm hovers the player around a circle, tries to go through the player to attack, then goes back into its travel or hover state
-const SPEED = 280.0
+const SPEED = 320.0
 
 @onready var player = $"../Player"
 @onready var head = $Head
@@ -20,16 +20,17 @@ enum {
 
 var state = TRAVEL
 var rng
-var max = 5
+var max = 4
 var curr = 0
 var angle = 0
 var randomnum = 0
-var radius = 500
+var hp = 500
+var radius = 700
 var circle_angle = 0
 var pos = Vector2(0, 0)
 var worm_pos = Vector2(0, 0)
 var in_area = false
-var part_list = []
+var taking_dmg = false
 
 func _ready():
 	body.part = head
@@ -38,6 +39,7 @@ func _ready():
 		add_child(dup)
 		dup.part = body
 		body = dup
+	tail.part = body
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	randomnum = rng.randf()
@@ -50,10 +52,15 @@ func _physics_process(delta):
 	if Input.is_action_just_released('mouse_left'):
 		print(state)
 		print(head.global_position)
+	if taking_dmg:
+		hp += -1
+	if hp == 0:
+		queue_free()
+		print('dead')
 	match state:
 		TRAVEL:
 			if in_area:
-				move(get_circle_position(player.global_position, radius + 600), head, delta)
+				move(get_circle_position(player.global_position, radius + 800), head, delta)
 			else:
 				move(get_circle_position(player.global_position, radius), head, delta)
 				if travel_timer.time_left <= 0:
@@ -117,4 +124,9 @@ func _on_travel_timer_timeout():
 	pos = 2*player.global_position - Vector2(head.global_position.x, head.global_position.y)
 	state = ATTACK
 
+func _on_hitbox_area_entered(area):
+	taking_dmg = true
+	print('hit')
 
+func _on_hitbox_area_exited(area):
+	taking_dmg = false

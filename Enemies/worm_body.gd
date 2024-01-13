@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-const SPEED = 280.0
+const SPEED = 320.0
+var radius = 160
 
 @onready var worm = get_parent()
 var part
@@ -8,14 +9,17 @@ var body
 var in_area = false
 
 func _ready():
-	if worm.curr < worm.max:
-		worm.curr += 1
-		print(worm.curr)
-		print(self)
+	if name != 'Tail':
+		if worm.curr < worm.max:
+			worm.curr += 1
+			print(worm.curr)
+			print(self)
+	else:
+		radius = 100
 
 func _physics_process(delta):
 	#move(head.global_position, self, delta)
-	if sqrt((position.x - part.position.x)**2 + (position.y - part.position.y)**2) < 160:
+	if sqrt((position.x - part.position.x)**2 + (position.y - part.position.y)**2) < radius:
 		in_area = true
 	else:
 		in_area = false
