@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c0sna7behoynp"]
+[gd_scene load_steps=66 format=3 uid="uid://c0sna7behoynp"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_kbbh3"]
 [ext_resource type="Texture2D" uid="uid://c5alm7txybtk1" path="res://Sprites/DirtBackground.png" id="1_sy1vs"]
@@ -15,12 +15,14 @@
 [ext_resource type="Script" path="res://World/OxygenManager.gd" id="7_flc4j"]
 [ext_resource type="Texture2D" uid="uid://ddurr7ss2qi5a" path="res://Sprites/UI/DepthM.png" id="7_jwy0o"]
 [ext_resource type="Texture2D" uid="uid://of7oj3hwkbco" path="res://Sprites/UI/InventoryPanel.png" id="7_q5hcl"]
+[ext_resource type="Texture2D" uid="uid://cldb47gs8mfi7" path="res://Sprites/RevealableDrakness.png" id="10_s824x"]
 [ext_resource type="PackedScene" uid="uid://76gsp4ebwiuc" path="res://Enemies/worm.tscn" id="11_8mjb1"]
 [ext_resource type="Script" path="res://World/depth.gd" id="11_cr3ny"]
 [ext_resource type="Script" path="res://World/depthbar.gd" id="11_r0s28"]
 [ext_resource type="StyleBox" uid="uid://c6btq760grcv7" path="res://Theme/Stylebox/FullscreenMenuPanel.tres" id="12_0axme"]
 [ext_resource type="Theme" uid="uid://dvtbquhphloyy" path="res://Theme/Default.tres" id="12_3s404"]
 [ext_resource type="PackedScene" uid="uid://c7y5u0o5pemh7" path="res://World/UI/Oxygen.tscn" id="13_24xb5"]
+[ext_resource type="Script" path="res://World/RevealableDarkness.gd" id="13_oluvf"]
 [ext_resource type="PackedScene" uid="uid://cy4qqjx6kwp5f" path="res://World/UpgradeMenuUI/CostButton.tscn" id="14_gxmrj"]
 [ext_resource type="Texture2D" uid="uid://dh8pw28d75n0d" path="res://Sprites/gems.png" id="14_x7u28"]
 [ext_resource type="PackedScene" uid="uid://c76bxy2rh8fbf" path="res://World/UpgradeMenuUI/UpgradeLabel.tscn" id="14_y4w1e"]
@@ -4197,6 +4199,15 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_doxqc")
 sources/0 = SubResource("TileSetAtlasSource_hru0s")
 sources/1 = SubResource("TileSetAtlasSource_5x1f6")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5tecb"]
+texture = ExtResource("10_s824x")
+texture_region_size = Vector2i(512, 512)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l6i1a"]
+tile_size = Vector2i(128, 128)
+sources/0 = SubResource("TileSetAtlasSource_5tecb")
+
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6t7yl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7chyq"]
@@ -4417,7 +4428,7 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_yd6rp")]
 z_index = 2
-position = Vector2(1152, -54)
+position = Vector2(1152, 89)
 metadata/_edit_group_ = true
 
 [node name="Darkness" type="Sprite2D" parent="Player"]
@@ -4432,6 +4443,8 @@ soft_ring = 48.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.8, 0.8)
+limit_left = 0
+limit_top = -512
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
@@ -4475,6 +4488,11 @@ layer_1/z_index = -1
 layer_1/tile_data = PackedInt32Array()
 script = ExtResource("5_r8xhd")
 
+[node name="RevealableDarkness" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_l6i1a")
+format = 2
+script = ExtResource("13_oluvf")
+
 [node name="Ores" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_b0r1q")
 format = 2
@@ -4484,9 +4502,37 @@ script = ExtResource("6_i1vhs")
 
 [node name="OxygenTether" parent="OxygenTethers" instance=ExtResource("29_458ob")]
 show_behind_parent = true
-position = Vector2(549, -64)
+position = Vector2(1155, 90)
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Dark" type="TextureRect" parent="UI"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -864.0
+offset_bottom = -486.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_vk8jo")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="LowVignette" type="TextureRect" parent="UI"]
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -864.0
+offset_bottom = -486.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = SubResource("GradientTexture2D_y2kua")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
@@ -4509,6 +4555,8 @@ offset_left = 202.0
 offset_top = 120.0
 offset_right = 202.0
 offset_bottom = 120.0
+step = 0.0
+tick_value_interval = 10.0
 
 [node name="OxygenLines" type="Label" parent="UI/Control/TopleftHUD"]
 custom_minimum_size = Vector2(0, 48)
