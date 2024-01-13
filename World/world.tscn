@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://c0sna7behoynp"]
+[gd_scene load_steps=67 format=3 uid="uid://c0sna7behoynp"]
 
 [ext_resource type="Script" path="res://World/world.gd" id="1_kbbh3"]
 [ext_resource type="Texture2D" uid="uid://c5alm7txybtk1" path="res://Sprites/DirtBackground.png" id="1_sy1vs"]

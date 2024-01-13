@@ -20,7 +20,7 @@ enum {
 
 var state = TRAVEL
 var rng
-var max = 3
+var max = 5
 var curr = 0
 var angle = 0
 var randomnum = 0
@@ -33,6 +33,11 @@ var part_list = []
 
 func _ready():
 	body.part = head
+	while curr < max:
+		var dup = body.duplicate()
+		add_child(dup)
+		dup.part = body
+		body = dup
 	rng = RandomNumberGenerator.new()
 	rng.randomize()
 	randomnum = rng.randf()

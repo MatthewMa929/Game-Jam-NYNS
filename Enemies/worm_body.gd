@@ -10,14 +10,15 @@ var in_area = false
 func _ready():
 	if worm.curr < worm.max:
 		worm.curr += 1
-		body = duplicate()
-		worm.add_child(body)
-		body.part = self
 		print(worm.curr)
 		print(self)
 
 func _physics_process(delta):
 	#move(head.global_position, self, delta)
+	if sqrt((position.x - part.position.x)**2 + (position.y - part.position.y)**2) < 160:
+		in_area = true
+	else:
+		in_area = false
 	velocity = part.velocity
 	if !in_area:
 		global_position = global_position.move_toward(part.global_position, delta * SPEED)
@@ -30,7 +31,9 @@ func rotate_part(part, target, delta):
 	part.rotate(sign(angleTo) * min(delta * 3, abs(angleTo)))
 
 func _on_hitbox_area_exited(area):
-	in_area = false
+	pass
+	#in_area = false
 
 func _on_hitbox_area_entered(area):
-	in_area = true
+	pass
+	#in_area = true
