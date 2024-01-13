@@ -14,6 +14,9 @@ var oxyore = 0
 
 @onready var dig_timer = $DigTimer
 
+func _ready():
+	Wwise.register_game_obj(self, "Break Crystal")
+
 func _physics_process(delta):
 	direction.x = Input.get_axis("Left", "Right")
 	direction.y = Input.get_axis("Up", "Down")
@@ -28,12 +31,14 @@ func _physics_process(delta):
 		if tilemap.name == "Ores": 
 			if coords.y == 0: #gems
 				gems += 1
+				Wwise.post_event("Crystal_Break", self)
 			if coords.y == 1: #gold
 				gold += 1
 			if coords.y == 2: #iron
 				iron += 1
 			if coords.y == 3: #oxyore
 				oxyore += 1
+				Wwise.post_event("Crystal_Break", self)
 		dig_timer.start()
 		SPEED = ORI_SPEED - RESISTANCE
 		tilemap.erase_cell(0, pos)

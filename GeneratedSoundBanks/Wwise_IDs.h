@@ -13,6 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
+        static const AkUniqueID CRYSTAL_BREAK = 756738409U;
         static const AkUniqueID DRILL_MINING = 737866587U;
         static const AkUniqueID PLAY_CAVE_OST = 1479112770U;
         static const AkUniqueID PLAY_COLONY_OST = 3238935255U;

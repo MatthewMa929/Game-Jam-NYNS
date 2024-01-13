@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{01F063C9-C049-3C8A-56E1-73F448F1E9A7}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{0ECB45E3-8063-61E3-AF6E-875C443BF68E}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -29,7 +29,7 @@
 				<GameParameter Id="1564184899" Name="SFX_Volume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{496A9363-A5AC-949D-9282-7703E644552F}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{0C716977-92EC-3A5D-DFDE-AE10BC1C8B98}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -41,9 +41,21 @@
 					<ShortName>rockCrumbling.wav</ShortName>
 					<CachePath>SFX/rockCrumbling_7C021990.wem</CachePath>
 				</File>
+				<File Id="279348124" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Crystal Break\mined_crystal2.wav</ShortName>
+					<CachePath>SFX/Crystal Break/mined_crystal2_818F3B66.wem</CachePath>
+				</File>
 				<File Id="600191496" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>CaveExplorationLoop.wav</ShortName>
 					<CachePath>SFX/CaveExplorationLoop_FBC78EF0.wem</CachePath>
+				</File>
+				<File Id="633623232" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Crystal Break\mined_crystal3.wav</ShortName>
+					<CachePath>SFX/Crystal Break/mined_crystal3_818F3B66.wem</CachePath>
+				</File>
+				<File Id="684755076" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Crystal Break\mined_crystal1.wav</ShortName>
+					<CachePath>SFX/Crystal Break/mined_crystal1_818F3B66.wem</CachePath>
 				</File>
 				<File Id="786917751" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>CaveColonyShop.wav</ShortName>
@@ -59,6 +71,13 @@
 				</File>
 			</Media>
 			<Events>
+				<Event Id="756738409" Name="Crystal_Break">
+					<MediaRefs>
+						<MediaRef Id="279348124"/>
+						<MediaRef Id="633623232"/>
+						<MediaRef Id="684755076"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="737866587" Name="Drill_Mining">
 					<MediaRefs>
 						<MediaRef Id="141542728"/>
@@ -86,5 +105,5 @@
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{27D184E1-43D3-5462-6CD5-F96C3F4EA16F}</FileHash>
+	<FileHash>{D71CCB43-9CB0-083C-350A-5A66A3D4187D}</FileHash>
 </SoundBanksInfo>
