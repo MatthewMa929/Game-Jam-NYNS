@@ -26,6 +26,7 @@ var pos = Vector2(0, 0)
 var worm_pos = Vector2(0, 0)
 var in_area = false
 var curr_part = head
+var part_list = []
 @onready var hover_timer = $HoverTimer
 @onready var travel_timer = $TravelTimer
 
@@ -41,8 +42,10 @@ func _physics_process(delta):
 		TRAVEL:
 			if in_area or travel_timer.time_left > 0:
 				move(get_circle_position(pos, radius + 300), delta)
+				print('in')
 			else:
 				move(get_circle_position(player.position, radius), delta)
+				print('out')
 		HOVER:
 			radius = rng.randf_range(350, 500)
 			angle += 0.01
@@ -81,6 +84,11 @@ func rotate_part(part, target, delta):
 	var direction = (target - global_position).normalized() 
 	var angleTo = part.transform.x.angle_to(direction)
 	part.rotate(sign(angleTo) * min(delta * 3, abs(angleTo)))
+	
+func create_worm():
+	for i in range(5):
+		var push = body.duplicate()
+		part_list.append(push)
 	
 func _on_sense_area_entered(area):
 	hover_timer.start()

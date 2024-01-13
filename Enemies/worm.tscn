@@ -29,7 +29,6 @@ region_rect = Rect2(1.26907, 11.7978, 188.916, 172.443)
 [node name="Spikes" type="Sprite2D" parent="Body"]
 z_index = 1
 position = Vector2(4, -5.00002)
-scale = Vector2(1, 1)
 texture = ExtResource("2_wf82b")
 region_enabled = true
 region_rect = Rect2(379.087, 11.0894, 172.727, 353.636)
