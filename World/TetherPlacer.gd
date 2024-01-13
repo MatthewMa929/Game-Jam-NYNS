@@ -3,8 +3,6 @@ extends Area2D
 @export var tether_scene : PackedScene
 @export var place_at : Node
 @export var count_label : Label
-
-
 @export var count_left = 3
 
 var nearby_tethers = []
@@ -17,9 +15,6 @@ func _ready():
 
 func _process(delta):
 	queue_redraw()
-	if nearby_tethers.size() > 0:
-		# Replenish oxygen
-		pass
 
 
 func _input(event):

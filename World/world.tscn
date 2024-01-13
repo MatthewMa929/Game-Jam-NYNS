@@ -5,12 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://bhokt5kekyjmt" path="res://Sprites/Dirt.png" id="1_tx6b7"]
 [ext_resource type="PackedScene" uid="uid://dxgyw2gl5mrt3" path="res://Player/player.tscn" id="1_yd6rp"]
 [ext_resource type="Texture2D" uid="uid://bqo1fq5ccargr" path="res://Sprites/Ores.png" id="3_6xt6y"]
+[ext_resource type="Script" path="res://World/VisionRadius.gd" id="4_d6pwv"]
 [ext_resource type="Script" path="res://World/TetherPlacer.gd" id="4_qdwvv"]
 [ext_resource type="Texture2D" uid="uid://dnuy6tchynws5" path="res://Sprites/DirtDetail.png" id="4_vpy14"]
 [ext_resource type="Script" path="res://World/Dirt.gd" id="5_r8xhd"]
 [ext_resource type="Script" path="res://World/Ores.gd" id="6_i1vhs"]
 [ext_resource type="Texture2D" uid="uid://b8kqbjb54ebm8" path="res://Sprites/TetherInputHint.png" id="6_p2ilu"]
 [ext_resource type="Texture2D" uid="uid://dc5nnd60uva6d" path="res://Sprites/UI/HUDAtlas.png" id="6_tcd21"]
+[ext_resource type="Script" path="res://World/OxygenManager.gd" id="7_flc4j"]
 [ext_resource type="Texture2D" uid="uid://ddurr7ss2qi5a" path="res://Sprites/UI/DepthM.png" id="7_jwy0o"]
 [ext_resource type="Texture2D" uid="uid://of7oj3hwkbco" path="res://Sprites/UI/InventoryPanel.png" id="7_q5hcl"]
 [ext_resource type="PackedScene" uid="uid://76gsp4ebwiuc" path="res://Enemies/worm.tscn" id="11_8mjb1"]
@@ -34,8 +36,8 @@
 
 [sub_resource type="Gradient" id="Gradient_y1dpi"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.0252809, 0.0505618)
-colors = PackedColorArray(0, 0, 0, 0, 0.0980392, 0.105882, 0.145098, 0.717647)
+offsets = PackedFloat32Array(0.0252809, 0.256506, 0.609665)
+colors = PackedColorArray(0, 0, 0, 0, 0.0980392, 0.105882, 0.145098, 0.717647, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tfh8p"]
 gradient = SubResource("Gradient_y1dpi")
@@ -4270,6 +4272,32 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/physics_material = SubResource("PhysicsMaterial_6t7yl")
 sources/0 = SubResource("TileSetAtlasSource_7chyq")
 
+[sub_resource type="Gradient" id="Gradient_ugvou"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.797386)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vk8jo"]
+gradient = SubResource("Gradient_ugvou")
+width = 1
+height = 1
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_c24s1"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.267974, 0.647059, 0.862745, 1)
+colors = PackedColorArray(0.454902, 0.301961, 0.301961, 0, 0.453125, 0.302083, 0.302083, 1, 0.0329335, 0.0219629, 0.0219629, 1.00549, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2kua"]
+gradient = SubResource("Gradient_c24s1")
+width = 2048
+height = 1536
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ygk7c"]
 atlas = ExtResource("6_tcd21")
 region = Rect2(0, 0, 341, 347)
@@ -4398,11 +4426,22 @@ z_index = 100
 position = Vector2(-1, 1)
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_tfh8p")
+script = ExtResource("4_d6pwv")
+light_radius = 128.0
+soft_ring = 48.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+
+[node name="OxygenManager" type="Node" parent="Player" node_paths=PackedStringArray("tether_placer", "o2_meter", "o2_low_vignette", "o2_low_fullscreen")]
+script = ExtResource("7_flc4j")
+tether_placer = NodePath("../TetherPlacer")
+o2_meter = NodePath("../../UI/Control/TopleftHUD/Oxygen")
+o2_low_vignette = NodePath("../../UI/LowVignette")
+o2_low_fullscreen = NodePath("../../UI/Dark")
+o2_max = 40.0
 
 [node name="TetherPlacer" type="Area2D" parent="Player" node_paths=PackedStringArray("place_at", "count_label")]
 script = ExtResource("4_qdwvv")
