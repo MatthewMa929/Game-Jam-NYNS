@@ -5,6 +5,8 @@ signal block_destroyed()
 var ORI_SPEED = 200
 var SPEED = ORI_SPEED
 var RESISTANCE = 100
+var MINING_LEVEL = 0
+var ORE_YIELD = 1
 var direction = Vector2.ZERO
 
 var gems = 0
@@ -26,18 +28,24 @@ func _physics_process(delta):
 	while collision and collision.get_collider() is TileMap:
 		var tilemap := collision.get_collider() as TileMap
 		var pos = tilemap.local_to_map(collision.get_position() - collision.get_normal() * 1.0)
+
 		#coordinates for ores
 		var coords = tilemap.get_cell_atlas_coords(0,pos)
+		#check mining level
+		if tilemap.name == "Dirt":
+			if MINING_LEVEL < coords.x / 16:
+				break
+
 		if tilemap.name == "Ores": 
 			if coords.y == 0: #gems
-				gems += 1
+				gems += ORE_YIELD
 				Wwise.post_event("Crystal_Break", self)
 			if coords.y == 1: #gold
-				gold += 1
+				gold += ORE_YIELD
 			if coords.y == 2: #iron
-				iron += 1
+				iron += ORE_YIELD
 			if coords.y == 3: #oxyore
-				oxyore += 1
+				oxyore += ORE_YIELD
 				Wwise.post_event("Crystal_Break", self)
 		dig_timer.start()
 		SPEED = ORI_SPEED - RESISTANCE

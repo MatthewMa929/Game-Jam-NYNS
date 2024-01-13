@@ -3,14 +3,18 @@ extends Area2D
 @export var tether_scene : PackedScene
 @export var place_at : Node
 @export var count_label : Label
-@export var count_left = 3
+@export var count_left = 3:
+	set(v):
+		count_left = v
+		if !is_inside_tree(): await ready
+		count_label.text = str(v)
 
 var nearby_tethers = []
 
 func _ready():
 	area_entered.connect(_on_area_entered)
 	area_exited.connect(_on_area_exited)
-	count_label.text = str(count_left)
+	count_left = count_left
 
 
 func _process(delta):
@@ -28,7 +32,6 @@ func _input(event):
 				nearest_tether = x
 		new_node.connect_tether(nearest_tether)
 		count_left -= 1
-		count_label.text = str(count_left)
 
 
 func _on_area_entered(area):

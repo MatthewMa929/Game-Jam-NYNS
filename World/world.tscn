@@ -35,11 +35,12 @@
 [ext_resource type="Texture2D" uid="uid://bvgii4u32pxyn" path="res://Sprites/iron.png" id="20_5uepq"]
 [ext_resource type="Script" path="res://World/ironcount.gd" id="21_labyr"]
 [ext_resource type="PackedScene" uid="uid://c8wc0dijkr76m" path="res://Player/oxygen_tether.tscn" id="29_458ob"]
+[ext_resource type="Script" path="res://World/Upgrades.gd" id="32_rjhh8"]
 
 [sub_resource type="Gradient" id="Gradient_y1dpi"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.0252809, 0.256506, 0.609665)
-colors = PackedColorArray(0, 0, 0, 0, 0.0980392, 0.105882, 0.145098, 0.717647, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.0252809, 0.256506, 0.609665)
+colors = PackedColorArray(0.0313726, 0.0352941, 0.0470588, 0, 0, 0, 0, 0, 0.069987, 0.0756834, 0.104167, 0.717647, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tfh8p"]
 gradient = SubResource("Gradient_y1dpi")
@@ -4438,7 +4439,6 @@ position = Vector2(-1, 1)
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_tfh8p")
 script = ExtResource("4_d6pwv")
-light_radius = 200.0
 soft_ring = 48.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -4767,10 +4767,12 @@ offset_right = 669.13
 offset_bottom = 402.89
 horizontal_scroll_mode = 0
 
-[node name="GridR" type="GridContainer" parent="UI/UpgradeMenu/Control/ScrollContainer"]
+[node name="GridR" type="GridContainer" parent="UI/UpgradeMenu/Control/ScrollContainer" node_paths=PackedStringArray("player")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("32_rjhh8")
+player = NodePath("../../../../../Player")
 
 [node name="UpgradeLabel4" parent="UI/UpgradeMenu/Control/ScrollContainer/GridR" instance=ExtResource("14_y4w1e")]
 layout_mode = 2
@@ -4861,6 +4863,7 @@ offset_left = 312.0
 offset_top = 281.0
 offset_right = 669.0
 offset_bottom = 403.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_h07gw")
 
 [node name="Button" type="Button" parent="UI/UpgradeMenu/Control"]
