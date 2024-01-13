@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c0sna7behoynp"]
+[gd_scene load_steps=51 format=3 uid="uid://c0sna7behoynp"]
 
 [ext_resource type="Texture2D" uid="uid://c5alm7txybtk1" path="res://Sprites/DirtBackground.png" id="1_sy1vs"]
 [ext_resource type="Texture2D" uid="uid://bhokt5kekyjmt" path="res://Sprites/Dirt.png" id="1_tx6b7"]
@@ -11,17 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://ddurr7ss2qi5a" path="res://Sprites/UI/DepthM.png" id="7_jwy0o"]
 [ext_resource type="Texture2D" uid="uid://of7oj3hwkbco" path="res://Sprites/UI/InventoryPanel.png" id="7_q5hcl"]
 [ext_resource type="PackedScene" uid="uid://76gsp4ebwiuc" path="res://Enemies/worm.tscn" id="11_8mjb1"]
+[ext_resource type="Script" path="res://World/depth.gd" id="11_cr3ny"]
+[ext_resource type="Script" path="res://World/depthbar.gd" id="11_r0s28"]
 [ext_resource type="StyleBox" uid="uid://c6btq760grcv7" path="res://Theme/Stylebox/FullscreenMenuPanel.tres" id="12_0axme"]
 [ext_resource type="Theme" uid="uid://dvtbquhphloyy" path="res://Theme/Default.tres" id="12_3s404"]
 [ext_resource type="PackedScene" uid="uid://c7y5u0o5pemh7" path="res://World/UI/Oxygen.tscn" id="13_24xb5"]
 [ext_resource type="PackedScene" uid="uid://cy4qqjx6kwp5f" path="res://World/UpgradeMenuUI/CostButton.tscn" id="14_gxmrj"]
-[ext_resource type="PackedScene" uid="uid://c76bxy2rh8fbf" path="res://World/UpgradeMenuUI/UpgradeLabel.tscn" id="14_y4w1e"]
-[ext_resource type="Texture2D" uid="uid://ctpckyk4j01qw" path="res://Sprites/UI/UpgradeMenuWindow.png" id="16_fkyms"]
-[ext_resource type="Script" path="res://World/oxygen.gd" id="9_e8dfw"]
-[ext_resource type="Script" path="res://World/depth.gd" id="11_cr3ny"]
-[ext_resource type="Script" path="res://World/depthbar.gd" id="11_r0s28"]
 [ext_resource type="Texture2D" uid="uid://dh8pw28d75n0d" path="res://Sprites/gems.png" id="14_x7u28"]
+[ext_resource type="PackedScene" uid="uid://c76bxy2rh8fbf" path="res://World/UpgradeMenuUI/UpgradeLabel.tscn" id="14_y4w1e"]
 [ext_resource type="Script" path="res://World/gemscount.gd" id="15_h6v4v"]
+[ext_resource type="Texture2D" uid="uid://ctpckyk4j01qw" path="res://Sprites/UI/UpgradeMenuWindow.png" id="16_fkyms"]
 [ext_resource type="Texture2D" uid="uid://d0jm8cpluhkhp" path="res://Sprites/oxyore.png" id="16_p2ipo"]
 [ext_resource type="Script" path="res://World/oxyorecount.gd" id="17_0rtek"]
 [ext_resource type="Texture2D" uid="uid://1cl2jn3fa8ba" path="res://Sprites/gold.png" id="18_e8neg"]
@@ -4244,6 +4243,9 @@ region = Rect2(0, 0, 341, 347)
 [sub_resource type="LabelSettings" id="LabelSettings_nhr8e"]
 font_size = 36
 
+[sub_resource type="LabelSettings" id="LabelSettings_pnbl0"]
+font_size = 32
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eoo70"]
 texture = ExtResource("7_jwy0o")
 texture_margin_left = 32.0
@@ -4263,18 +4265,6 @@ region_rect = Rect2(64, 0, 64, 128)
 [sub_resource type="AtlasTexture" id="AtlasTexture_5t5yc"]
 atlas = ExtResource("6_tcd21")
 region = Rect2(0, 351, 293, 158)
-
-[sub_resource type="Gradient" id="Gradient_hnydt"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_hmes1"]
-gradient = SubResource("Gradient_hnydt")
-width = 32
-height = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_pnbl0"]
-font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_pbp6x"]
 font_size = 36
@@ -4355,10 +4345,12 @@ position = Vector2(1729, 1227)
 texture = ExtResource("1_sy1vs")
 region_enabled = true
 region_rect = Rect2(0, 0, 4096, 4096)
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_yd6rp")]
 position = Vector2(739, 760)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="Darkness" type="Sprite2D" parent="Player"]
 show_behind_parent = true
@@ -4421,58 +4413,6 @@ text = "124"
 label_settings = SubResource("LabelSettings_nhr8e")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-
-[node name="depthbar" type="ProgressBar" parent="UI/Control/DepthBar"]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxTexture_eoo70")
-theme_override_styles/fill = SubResource("StyleBoxTexture_f4vnw")
-value = 57.84
-fill_mode = 3
-show_percentage = false
-script = ExtResource("11_r0s28")
-
-[node name="Bottom" type="TextureRect" parent="UI/Control/DepthBar"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -212.0
-offset_top = -104.0
-offset_right = 81.0
-offset_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = SubResource("AtlasTexture_5t5yc")
-stretch_mode = 2
-
-[node name="depth" type="Label" parent="UI/Control/DepthBar/Bottom"]
-custom_minimum_size = Vector2(0, 48)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 32.0
-offset_top = 52.0
-offset_right = -102.0
-offset_bottom = -51.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-text = "9999m"
-label_settings = SubResource("LabelSettings_nhr8e")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("11_cr3ny")
 
 [node name="Inventory" type="NinePatchRect" parent="UI/Control"]
 layout_mode = 1
@@ -4561,6 +4501,69 @@ text = "0"
 label_settings = SubResource("LabelSettings_pnbl0")
 horizontal_alignment = 2
 script = ExtResource("21_labyr")
+
+[node name="Depth" type="Control" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Depthbar" type="ProgressBar" parent="UI/Control/Depth"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.0
+offset_top = 64.0
+offset_right = -88.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxTexture_eoo70")
+theme_override_styles/fill = SubResource("StyleBoxTexture_f4vnw")
+value = 57.84
+fill_mode = 3
+show_percentage = false
+script = ExtResource("11_r0s28")
+
+[node name="Bottom" type="TextureRect" parent="UI/Control/Depth"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -178.0
+offset_right = 11.0
+offset_bottom = -20.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("AtlasTexture_5t5yc")
+stretch_mode = 2
+
+[node name="Depth" type="Label" parent="UI/Control/Depth"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -254.0
+offset_top = 1158.0
+offset_right = -80.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+text = "9999m"
+label_settings = SubResource("LabelSettings_nhr8e")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_cr3ny")
 
 [node name="UpgradeMenu" type="PanelContainer" parent="UI"]
 visible = false
