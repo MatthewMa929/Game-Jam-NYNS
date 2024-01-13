@@ -42,16 +42,17 @@ func _physics_process(delta):
 		dig_timer.start()
 		SPEED = ORI_SPEED - RESISTANCE
 		tilemap.erase_cell(0, pos)
-		if tilemap.name != "Dirt": return
-		tilemap.erase_cell(1, pos)
-		for pos_offset in [
-			pos + Vector2i.UP,
-			pos + Vector2i.DOWN,
-			pos + Vector2i.LEFT,
-			pos + Vector2i.RIGHT,
-		]:
-			if tilemap.get_cell_atlas_coords(0, pos_offset) != Vector2i(-1, -1):
-				tilemap.set_cell(1, pos_offset, 0, Vector2i(randi() % 3, 0))
+		if tilemap.name == "Dirt":
+			tilemap.erase_cell(1, pos)
+			for pos_offset in [
+				pos + Vector2i.UP,
+				pos + Vector2i.DOWN,
+				pos + Vector2i.LEFT,
+				pos + Vector2i.RIGHT,
+			]:
+				var dest_atlas_coords := tilemap.get_cell_atlas_coords(0, pos_offset)
+				if dest_atlas_coords != Vector2i(-1, -1):
+					tilemap.set_cell(1, pos_offset, 0, Vector2i(randi() % 3, dest_atlas_coords.x / 16))
 
 		block_destroyed.emit()
 		tilemap.update_internals()
