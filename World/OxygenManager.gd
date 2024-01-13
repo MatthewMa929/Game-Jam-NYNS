@@ -22,15 +22,14 @@ var checkpoint_pos = Vector2()
 func _ready():
 	o2_current = o2_max
 	checkpoint_pos = get_parent().global_position
-
+	Wwise.register_game_obj(self, "OxygenSFX")
 
 func _process(delta):
 	if tether_placer.nearby_tethers.size() > 0:
 		o2_current += o2_recovery * delta
-
 	else:
 		o2_current -= o2_depletion * delta
-
+		Wwise.post_event("oxygenRefill", self)
 	if o2_current > o2_max:
 		o2_current = o2_max
 

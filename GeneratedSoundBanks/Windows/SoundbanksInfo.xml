@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{0ECB45E3-8063-61E3-AF6E-875C443BF68E}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{506AEDE3-3C08-152D-87DE-98C2931674C6}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -27,9 +27,25 @@
 			<GameParameters>
 				<GameParameter Id="1006694123" Name="Music_Volume"/>
 				<GameParameter Id="1564184899" Name="SFX_Volume"/>
+				<GameParameter Id="2603805318" Name="PlayerOxygen"/>
+				<GameParameter Id="3649139729" Name="Worm_Distance_Pitch"/>
 			</GameParameters>
+			<StateGroups>
+				<StateGroup Id="1860436912" Name="Low_Oxygen">
+					<States>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1865816856" Name="Worm_in_Range">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="2452206122" Name="false"/>
+						<State Id="3053630529" Name="true"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
 		</SoundBank>
-		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{0C716977-92EC-3A5D-DFDE-AE10BC1C8B98}">
+		<SoundBank Id="3161908922" Type="User" Language="SFX" Hash="{82318BE3-B545-EC7C-850B-35D2E61E8341}">
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<Media>
@@ -37,9 +53,17 @@
 					<ShortName>drill_Engine.wav</ShortName>
 					<CachePath>SFX/drill_Engine_E5031137.wem</CachePath>
 				</File>
+				<File Id="191487723" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>worm_tunnel.wav</ShortName>
+					<CachePath>SFX/worm_tunnel_6088D4D9.wem</CachePath>
+				</File>
 				<File Id="237732258" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>rockCrumbling.wav</ShortName>
 					<CachePath>SFX/rockCrumbling_7C021990.wem</CachePath>
+				</File>
+				<File Id="267529617" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>lowOxygen_beep.wav</ShortName>
+					<CachePath>SFX/lowOxygen_beep_818F3B66.wem</CachePath>
 				</File>
 				<File Id="279348124" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Crystal Break\mined_crystal2.wav</ShortName>
@@ -53,6 +77,10 @@
 					<ShortName>Crystal Break\mined_crystal3.wav</ShortName>
 					<CachePath>SFX/Crystal Break/mined_crystal3_818F3B66.wem</CachePath>
 				</File>
+				<File Id="655024360" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>UI_Click.wav</ShortName>
+					<CachePath>SFX/UI_Click_818F3B66.wem</CachePath>
+				</File>
 				<File Id="684755076" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>Crystal Break\mined_crystal1.wav</ShortName>
 					<CachePath>SFX/Crystal Break/mined_crystal1_818F3B66.wem</CachePath>
@@ -64,6 +92,10 @@
 				<File Id="874823903" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>rockCrumbling.wav</ShortName>
 					<CachePath>SFX/rockCrumbling_4536527D.wem</CachePath>
+				</File>
+				<File Id="930128420" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>oxygenRefill.wav</ShortName>
+					<CachePath>SFX/oxygenRefill_818F3B66.wem</CachePath>
 				</File>
 				<File Id="945131514" Language="SFX" Streaming="false" Location="Memory">
 					<ShortName>rockCrumbling.wav</ShortName>
@@ -86,6 +118,16 @@
 						<MediaRef Id="945131514"/>
 					</MediaRefs>
 				</Event>
+				<Event Id="534520757" Name="lowOxygen">
+					<MediaRefs>
+						<MediaRef Id="267529617"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="30680937" Name="oxygenRefill">
+					<MediaRefs>
+						<MediaRef Id="930128420"/>
+					</MediaRefs>
+				</Event>
 				<Event Id="1479112770" Name="Play_Cave_OST">
 					<MediaRefs>
 						<MediaRef Id="600191496"/>
@@ -99,11 +141,23 @@
 				<Event Id="2296272484" Name="Stop_Cave_OST"/>
 				<Event Id="2414364521" Name="Stop_Colony_OST"/>
 				<Event Id="2118051910" Name="Stop_Drill_Mining"/>
+				<Event Id="3164408517" Name="uiClick">
+					<MediaRefs>
+						<MediaRef Id="655024360"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="4256651350" Name="wormTunnel">
+					<MediaRefs>
+						<MediaRef Id="191487723"/>
+					</MediaRefs>
+				</Event>
 			</Events>
 			<GameParameters>
 				<GameParameter Id="1006694123" Name="Music_Volume"/>
+				<GameParameter Id="2603805318" Name="PlayerOxygen"/>
+				<GameParameter Id="3649139729" Name="Worm_Distance_Pitch"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{D71CCB43-9CB0-083C-350A-5A66A3D4187D}</FileHash>
+	<FileHash>{6ADA44DB-EEB3-0A64-9D74-1DBABDD0CDC4}</FileHash>
 </SoundBanksInfo>

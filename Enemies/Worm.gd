@@ -43,6 +43,8 @@ func _ready():
 	randomnum = rng.randf()
 	hover_timer.one_shot = true
 	travel_timer.one_shot = true
+	Wwise.register_game_obj(self, "WormSFX")
+	Wwise.post_event("wormTunnel", self)
 
 func _physics_process(delta):
 	if Input.is_action_just_released('mouse_left'):
@@ -101,10 +103,12 @@ func _on_sense_area_entered(area):
 		state = HOVER
 		pos = player.global_position
 		print('sense')
+		Wwise.set_state("Worm_in_Range", "true")
+		
 	
 func _on_sense_area_exited(area):
 	in_area = false
-	
+	Wwise.set_state("Worm_in_Range", "false")
 func _on_hover_timer_timeout():
 	pos = 2*player.global_position - Vector2(head.global_position.x, head.global_position.y)
 	state = ATTACK
