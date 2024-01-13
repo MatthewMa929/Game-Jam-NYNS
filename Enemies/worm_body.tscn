@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxno88hy1smwd"]
+
+[ext_resource type="Texture2D" uid="uid://b0apidial1asc" path="res://Sprites/Worm.png" id="1_8kxib"]
+[ext_resource type="Script" path="res://Enemies/worm_body.gd" id="1_57lmh"]
+
+[node name="WormBody" type="Sprite2D"]
+texture = ExtResource("1_8kxib")
+region_enabled = true
+region_rect = Rect2(1.04939, 11.731, 189.73, 172.371)
+script = ExtResource("1_57lmh")
+
+[node name="Spikes" type="Sprite2D" parent="."]
+texture = ExtResource("1_8kxib")
+region_enabled = true
+region_rect = Rect2(379, 12.9808, 173, 349.349)
+
+[node name="BodyTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="timeout" from="BodyTimer" to="." method="_on_body_timer_timeout"]

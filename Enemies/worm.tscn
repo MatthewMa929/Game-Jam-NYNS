@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://76gsp4ebwiuc"]
+[gd_scene load_steps=5 format=3 uid="uid://76gsp4ebwiuc"]
 
 [ext_resource type="Script" path="res://Enemies/Worm.gd" id="1_mh472"]
 [ext_resource type="Texture2D" uid="uid://b0apidial1asc" path="res://Sprites/Worm.png" id="2_wf82b"]
+[ext_resource type="PackedScene" uid="uid://bxno88hy1smwd" path="res://Enemies/worm_body.tscn" id="3_qldn8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgnng"]
 radius = 100.0
@@ -18,20 +19,8 @@ texture = ExtResource("2_wf82b")
 region_enabled = true
 region_rect = Rect2(213.99, 6.80727, 131.433, 209.736)
 
-[node name="Body" type="Sprite2D" parent="."]
-visible = false
-z_index = 1
-position = Vector2(155, 17.5)
-texture = ExtResource("2_wf82b")
-region_enabled = true
-region_rect = Rect2(1.26907, 11.7978, 188.916, 172.443)
-
-[node name="Spikes" type="Sprite2D" parent="Body"]
-z_index = 1
-position = Vector2(4, -5.00002)
-texture = ExtResource("2_wf82b")
-region_enabled = true
-region_rect = Rect2(379.087, 11.0894, 172.727, 353.636)
+[node name="WormBody" parent="." instance=ExtResource("3_qldn8")]
+scale = Vector2(1, 1)
 
 [node name="Tail" type="Sprite2D" parent="."]
 visible = false
@@ -52,10 +41,10 @@ region_rect = Rect2(4.42994, 226.638, 298.27, 148.609)
 shape = SubResource("CircleShape2D_xgnng")
 
 [node name="HoverTimer" type="Timer" parent="."]
-wait_time = 9.0
+wait_time = 6.0
 
 [node name="TravelTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 4.0
 
 [node name="BodyTimer" type="Timer" parent="."]
 wait_time = 0.2
