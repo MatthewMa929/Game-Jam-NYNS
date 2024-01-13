@@ -288,10 +288,5 @@ libraries = {
 [node name="DigTimer" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="Surround" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Surround"]
-shape = SubResource("CircleShape2D_u6ty2")
-
 [connection signal="block_destroyed" from="." to="AnimationManager" method="_on_player_block_destroyed"]
 [connection signal="timeout" from="DigTimer" to="." method="_on_dig_timer_timeout"]

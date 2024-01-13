@@ -5,9 +5,11 @@
 [ext_resource type="Texture2D" uid="uid://bhokt5kekyjmt" path="res://Sprites/Dirt.png" id="1_tx6b7"]
 [ext_resource type="PackedScene" uid="uid://dxgyw2gl5mrt3" path="res://Player/player.tscn" id="1_yd6rp"]
 [ext_resource type="Texture2D" uid="uid://bqo1fq5ccargr" path="res://Sprites/Ores.png" id="3_6xt6y"]
+[ext_resource type="Script" path="res://World/TetherPlacer.gd" id="4_qdwvv"]
 [ext_resource type="Texture2D" uid="uid://dnuy6tchynws5" path="res://Sprites/DirtDetail.png" id="4_vpy14"]
 [ext_resource type="Script" path="res://World/Dirt.gd" id="5_r8xhd"]
 [ext_resource type="Script" path="res://World/Ores.gd" id="6_i1vhs"]
+[ext_resource type="Texture2D" uid="uid://b8kqbjb54ebm8" path="res://Sprites/TetherInputHint.png" id="6_p2ilu"]
 [ext_resource type="Texture2D" uid="uid://dc5nnd60uva6d" path="res://Sprites/UI/HUDAtlas.png" id="6_tcd21"]
 [ext_resource type="Texture2D" uid="uid://ddurr7ss2qi5a" path="res://Sprites/UI/DepthM.png" id="7_jwy0o"]
 [ext_resource type="Texture2D" uid="uid://of7oj3hwkbco" path="res://Sprites/UI/InventoryPanel.png" id="7_q5hcl"]
@@ -28,6 +30,7 @@
 [ext_resource type="Script" path="res://World/goldcount.gd" id="19_oep8f"]
 [ext_resource type="Texture2D" uid="uid://bvgii4u32pxyn" path="res://Sprites/iron.png" id="20_5uepq"]
 [ext_resource type="Script" path="res://World/ironcount.gd" id="21_labyr"]
+[ext_resource type="PackedScene" uid="uid://c8wc0dijkr76m" path="res://Player/oxygen_tether.tscn" id="29_458ob"]
 
 [sub_resource type="Gradient" id="Gradient_y1dpi"]
 interpolation_mode = 2
@@ -41,6 +44,9 @@ height = 2048
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k1njq"]
+radius = 512.0
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_doxqc"]
 
@@ -4379,9 +4385,8 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_yd6rp")]
 z_index = 2
-position = Vector2(739, 760)
+position = Vector2(1152, -54)
 metadata/_edit_group_ = true
-metadata/_edit_lock_ = true
 
 [node name="Darkness" type="Sprite2D" parent="Player"]
 show_behind_parent = true
@@ -4395,6 +4400,30 @@ zoom = Vector2(0.8, 0.8)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
+[node name="TetherPlacer" type="Area2D" parent="Player" node_paths=PackedStringArray("place_at", "count_label")]
+script = ExtResource("4_qdwvv")
+tether_scene = ExtResource("29_458ob")
+place_at = NodePath("../../OxygenTethers")
+count_label = NodePath("../../UI/Control/TopleftHUD/OxygenLines")
+
+[node name="Node2D" type="CollisionShape2D" parent="Player/TetherPlacer"]
+shape = SubResource("CircleShape2D_k1njq")
+
+[node name="Hint" type="Node2D" parent="Player/TetherPlacer"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/TetherPlacer/Hint"]
+show_behind_parent = true
+z_index = 100
+position = Vector2(0, -42)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_p2ilu")
+hframes = 2
+vframes = 2
+
+[node name="Frame" type="Timer" parent="Player/TetherPlacer"]
+autostart = true
+
 [node name="Dirt" type="TileMap" parent="."]
 clip_children = 2
 tile_set = SubResource("TileSet_1p3wg")
@@ -4407,6 +4436,12 @@ script = ExtResource("5_r8xhd")
 tile_set = SubResource("TileSet_b0r1q")
 format = 2
 script = ExtResource("6_i1vhs")
+
+[node name="OxygenTethers" type="Node" parent="."]
+
+[node name="OxygenTether" parent="OxygenTethers" instance=ExtResource("29_458ob")]
+show_behind_parent = true
+position = Vector2(549, -64)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -4815,4 +4850,5 @@ event = {
 }
 trigger_on = 2
 
+[connection signal="timeout" from="Player/TetherPlacer/Frame" to="Player/TetherPlacer" method="_on_frame_timeout"]
 [connection signal="pressed" from="UI/UpgradeMenu/Control/Button" to="UI/UpgradeMenu" method="hide"]
