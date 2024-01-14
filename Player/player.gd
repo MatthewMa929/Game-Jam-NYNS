@@ -9,6 +9,7 @@ var MINING_LEVEL = 0
 var ORE_YIELD = 1
 var direction = Vector2.ZERO
 
+
 var gems = 0
 var gold = 0
 var iron = 0

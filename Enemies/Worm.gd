@@ -109,7 +109,7 @@ func _on_sense_area_entered(area):
 		state = HOVER
 		pos = player.global_position
 		print('sense')
-		Wwise.set_state("Worm_in_Range", "true")
+	Wwise.set_state("Worm_in_Range", "true")
 		
 	
 func _on_sense_area_exited(area):
