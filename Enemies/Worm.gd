@@ -54,6 +54,8 @@ func _physics_process(delta):
 		print(head.global_position)
 	if taking_dmg:
 		hp += -1
+		Wwise.post_event("Play_WormHit", self)
+		print('hit')
 	if hp == 0:
 		queue_free()
 	match state:
