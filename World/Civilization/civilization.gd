@@ -7,6 +7,7 @@ const CIV_HEIGHT = 1235
 @onready var bg = $Background
 @onready var workshop = $Workshop
 @onready var qtmole = $SurpriseMole
+@onready var dirt = $"../Dirt"
 
 var visited = false
 
@@ -30,11 +31,10 @@ var tween
 func _ready():
 	# set the x and y to a random val  
 	# in pixels: x clamped (600, 2200), y every 3500 
-	
+	dirt.delete_dirt((global_position.x - 450)/16, 900/16, (global_position.y - 300)/16, 600/16)
 	var civ_position = Vector2i(0,0)
 	var bg_variant = randi_range(0,8)
 	_set_civ_variant(bg_variant)
-	 
 	
 
 

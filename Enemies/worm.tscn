@@ -84,6 +84,8 @@ region_rect = Rect2(4.42994, 226.638, 298.27, 148.609)
 
 [node name="LeaveArea" type="Area2D" parent="."]
 scale = Vector2(1, 1)
+collision_layer = 0
+collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeaveArea"]
 shape = SubResource("CircleShape2D_gbsc2")
@@ -98,5 +100,6 @@ wait_time = 4.0
 [connection signal="area_exited" from="Head/Sense" to="." method="_on_sense_area_exited"]
 [connection signal="area_entered" from="WormBody/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="WormBody/Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="area_entered" from="LeaveArea" to="." method="_on_leave_area_area_entered"]
 [connection signal="timeout" from="HoverTimer" to="." method="_on_hover_timer_timeout"]
 [connection signal="timeout" from="TravelTimer" to="." method="_on_travel_timer_timeout"]

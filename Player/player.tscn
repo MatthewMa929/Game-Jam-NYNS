@@ -308,6 +308,19 @@ libraries = {
 [node name="DigTimer" type="Timer" parent="."]
 wait_time = 0.1
 
+[node name="HurtTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="InCiv" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InCiv"]
+
 [connection signal="block_destroyed" from="." to="AnimationManager" method="_on_player_block_destroyed"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="DigTimer" to="." method="_on_dig_timer_timeout"]
+[connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="area_entered" from="InCiv" to="." method="_on_in_civ_area_entered"]
+[connection signal="area_exited" from="InCiv" to="." method="_on_in_civ_area_exited"]

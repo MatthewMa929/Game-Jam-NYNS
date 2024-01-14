@@ -26,7 +26,6 @@ func _process(delta):
 		DEPTH += inc*2
 		print('increased')
 	if (DEPTH%200 == 0) and DEPTH != 200*civ_amt:
-		print(civ_amt)
 		civ_amt += 1
 		create_civilization(DEPTH)
 		print('civ created: ', DEPTH)
@@ -35,8 +34,7 @@ func create_civilization(depth):
 	var civ = civilization.duplicate()
 	add_child(civ)
 	# in pixels: x clamped (600, 2200), y every 3500 
-	civ.position = Vector2(200, depth)
-	print(Vector2(100, depth))
+	civ.position = Vector2(200*16, depth*16)
 	
 func check_civ():
 	print('yad')

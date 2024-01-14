@@ -9,6 +9,7 @@ var MINING_LEVEL = 0
 var ORE_YIELD = 1
 var direction = Vector2.ZERO
 
+var inside = false
 
 var gems = 0
 var gold = 0
@@ -16,6 +17,9 @@ var iron = 0
 var oxyore = 0
 
 @onready var dig_timer = $DigTimer
+@onready var oxygen_manager = $OxygenManager
+@onready var hurt_timer = $HurtTimer
+@onready var in_civ = $InCiv
 
 func _ready():
 	Wwise.register_game_obj(self, "Break Crystal")
@@ -73,4 +77,19 @@ func _on_dig_timer_timeout():
 	SPEED = ORI_SPEED
 
 func _on_hitbox_area_entered(area):
-	print('yea')
+	oxygen_manager.o2_current += -12
+	oxygen_manager.o2_recovery = 1.0
+	hurt_timer.start()
+	print(oxygen_manager.o2_current)
+
+func _on_hurt_timer_timeout():
+	print('recover')
+	oxygen_manager.o2_recovery = 4.0
+
+
+func _on_in_civ_area_entered(area):
+	inside = true
+
+
+func _on_in_civ_area_exited(area):
+	inside = false

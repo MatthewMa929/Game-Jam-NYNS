@@ -80,6 +80,9 @@ func create_ore(ore, x, y):
 	else:
 		set_cell(0, Vector2i(x, y), 0, Vector2i(2, ore))
 	
-	
+func delete_ore(width, width_inc, depth, depth_inc):
+	for y in range(depth, depth+depth_inc):
+		for x in range(width, width+width_inc):
+			erase_cell(0, Vector2i(x, y))
 	
 

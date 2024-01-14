@@ -10,12 +10,13 @@ const SPEED = 320.0
 
 @onready var hover_timer = $HoverTimer
 @onready var travel_timer = $TravelTimer
+@onready var oxygen_manager = $"../Player/OxygenManager"
 
 enum {
 	TRAVEL,
 	HOVER,
 	ATTACK,
-	HIT
+	WAIT
 }
 
 var state = TRAVEL
@@ -82,8 +83,10 @@ func _physics_process(delta):
 					state = TRAVEL
 				else:
 					state = HOVER
-		HIT:
-			pass
+		WAIT:
+			move(get_circle_position(player.global_position, radius + 1000), head, delta)
+			if !player.inside:
+				state = ATTACK
 		
 func get_circle_position(player_pos, rad):
 	var x = player_pos.x + cos(angle) * rad
@@ -116,6 +119,7 @@ func _on_sense_area_entered(area):
 func _on_sense_area_exited(area):
 	in_area = false
 	Wwise.set_state("Worm_in_Range", "false")
+	
 func _on_hover_timer_timeout():
 	pos = 2*player.global_position - Vector2(head.global_position.x, head.global_position.y)
 	state = ATTACK
@@ -129,3 +133,7 @@ func _on_hitbox_area_entered(area):
 
 func _on_hitbox_area_exited(area):
 	taking_dmg = false
+
+func _on_leave_area_area_entered(area):
+	print('what')
+	state = WAIT
