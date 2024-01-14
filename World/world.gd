@@ -28,4 +28,5 @@ func _process(delta):
 func create_civilization(depth):
 	var civ = civilization.duplicate()
 	add_child(civ)
+	# in pixels: x clamped (600, 2200), y every 3500 
 	civ.position = Vector2(100, depth)

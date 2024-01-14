@@ -13,7 +13,6 @@ var civ_textures := [
 	preload("res://Sprites/Civilization/civ3.png"),
 	preload("res://Sprites/Civilization/civ7.png"),
 	preload("res://Sprites/Civilization/civ8.png"),
-	
 	preload("res://Sprites/Civilization/civ2.png"),
 	preload("res://Sprites/Civilization/civ4.png"),
 	preload("res://Sprites/Civilization/civ5.png"),
@@ -26,7 +25,8 @@ var civ_textures := [
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	# set the x and y to a random val   // x clamped (600, 2200), y every 3500
+	# set the x and y to a random val  
+	# in pixels: x clamped (600, 2200), y every 3500 
 	
 	var civ_position = Vector2i(0,0)
 	var bg_variant = randi_range(0,8)
@@ -58,10 +58,9 @@ func _set_civ_variant(bg_var):
 	workshop.region_rect = Rect2(CIV_WIDTH*ws_variant, 0, CIV_WIDTH, CIV_HEIGHT)
 	
 	# qtmole ;P <3
+	qtmole.visible = false
 	if (rng.randf() < 0.1):
 		qtmole.visible = true
-	else:
-		qtmole.visible = false
 	
 	
 	
