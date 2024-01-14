@@ -23,6 +23,7 @@ func _ready():
 	o2_current = o2_max
 	checkpoint_pos = get_parent().global_position
 	Wwise.register_game_obj(self, "OxygenSFX")
+	Wwise.post_event("lowOxygen",self)
 	
 
 func _process(delta):
@@ -45,7 +46,7 @@ func _process(delta):
 	
 	if (o2_current <= o2_max / 2) :
 		Wwise.set_rtpc_value("PlayerOxygen", 49, self)
-		Wwise.post_event("lowOxygen",self)
+		
 	else:
 		Wwise.set_rtpc_value("PlayerOxygen", 50, self)
 	o2_low_vignette.self_modulate.a = smoothstep(0.5, 0.2, o2_current / o2_max)
