@@ -43,8 +43,10 @@ func _physics_process(delta):
 				Wwise.post_event("Crystal_Break", self)
 			if coords.y == 1: #gold
 				gold += ORE_YIELD
+				Wwise.post_event("Play_Ore_Break", self)
 			if coords.y == 2: #iron
 				iron += ORE_YIELD
+				Wwise.post_event("Play_Ore_Break", self)
 			if coords.y == 3: #oxyore
 				oxyore += ORE_YIELD
 				Wwise.post_event("Crystal_Break", self)

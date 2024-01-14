@@ -58,6 +58,7 @@ func _physics_process(delta):
 		print('hit')
 	if hp == 0:
 		queue_free()
+		Wwise.post_event("Play_WormDeath", self)
 	match state:
 		TRAVEL:
 			if in_area:

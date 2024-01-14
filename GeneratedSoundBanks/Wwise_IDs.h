@@ -19,6 +19,11 @@ namespace AK
         static const AkUniqueID OXYGENREFILL = 30680937U;
         static const AkUniqueID PLAY_CAVE_OST = 1479112770U;
         static const AkUniqueID PLAY_COLONY_OST = 3238935255U;
+        static const AkUniqueID PLAY_ORE_BREAK = 4162230486U;
+        static const AkUniqueID PLAY_PLACEOXYGENTETHER = 57624931U;
+        static const AkUniqueID PLAY_PLAYERHIT = 514211712U;
+        static const AkUniqueID PLAY_WORMDEATH = 1996518743U;
+        static const AkUniqueID PLAY_WORMHIT = 3427817302U;
         static const AkUniqueID STOP_CAVE_OST = 2296272484U;
         static const AkUniqueID STOP_COLONY_OST = 2414364521U;
         static const AkUniqueID STOP_DRILL_MINING = 2118051910U;
@@ -56,6 +61,7 @@ namespace AK
     {
         static const AkUniqueID MUSIC_VOLUME = 1006694123U;
         static const AkUniqueID PLAYEROXYGEN = 2603805318U;
+        static const AkUniqueID SET = 376462279U;
         static const AkUniqueID SFX_VOLUME = 1564184899U;
         static const AkUniqueID WORM_DISTANCE_PITCH = 3649139729U;
     } // namespace GAME_PARAMETERS
