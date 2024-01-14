@@ -69,6 +69,10 @@ Place={
 ]
 }
 
+[rendering]
+
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+
 [wwise]
 
 common_user_settings/base_path="res://GeneratedSoundBanks"
