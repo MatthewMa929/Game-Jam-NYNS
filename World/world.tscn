@@ -4950,11 +4950,7 @@ event = {
 trigger_on = 2
 
 [node name="Civilization" parent="." instance=ExtResource("37_qn2ik")]
-<<<<<<< Updated upstream
 position = Vector2(1216, 1492)
-=======
-position = Vector2(1134, 442)
->>>>>>> Stashed changes
 
 [connection signal="timeout" from="Player/TetherPlacer/Frame" to="Player/TetherPlacer" method="_on_frame_timeout"]
 [connection signal="pressed" from="UI/UpgradeMenu/Control/Button" to="UI/UpgradeMenu" method="hide"]
