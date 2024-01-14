@@ -27,15 +27,16 @@ const upgrade_costs := [
 			"effect": 25.0
 		},
 		{
-			"type1": RES_IRON, "amount1": 60,
-			"effect": 30.0
-		},
-		{
-			"type1": RES_IRON, "amount1": 70,
+			"type1": RES_IRON, "amount1": 100,
 			"effect": 35.0
 		},
 		{
-			"effect": 40.0
+			"type1": RES_IRON, "amount1": 120,
+			"type2": RES_GEMS, "amount2": 10,
+			"effect": 45.0
+		},
+		{
+			"effect": 60.0
 		},
 	],
 	[ # 2 Ground's Resistance when mining
@@ -45,13 +46,13 @@ const upgrade_costs := [
 			"effect": 100.0
 		},
 		{
-			"type1": RES_IRON, "amount1": 30,
-			"type2": RES_GOLD, "amount2": 10,
+			"type1": RES_IRON, "amount1": 100,
+			"type2": RES_GOLD, "amount2": 20,
 			"effect": 70.0
 		},
 		{
-			"type1": RES_IRON, "amount1": 30,
-			"type2": RES_GOLD, "amount2": 10,
+			"type1": RES_IRON, "amount1": 150,
+			"type2": RES_GOLD, "amount2": 40,
 			"effect": 40.0
 		},
 		{
@@ -60,8 +61,7 @@ const upgrade_costs := [
 	],
 	[ # 3 Motorclaw Mining Level
 		{
-			"type1": RES_IRON, "amount1": 10,
-			"type2": RES_GOLD, "amount2": 5,
+			"type1": RES_IRON, "amount1": 30,
 			"effect": 0
 		},
 		{
@@ -85,7 +85,7 @@ const upgrade_costs := [
 			"effect": 1
 		},
 		{
-			"type1": RES_GEMS, "amount1": 60,
+			"type1": RES_GEMS, "amount1": 200,
 			"type2": RES_GOLD, "amount2": 60,
 			"effect": 2
 		},
@@ -95,27 +95,32 @@ const upgrade_costs := [
 	],
 	[ # 5 Movement Speed
 		{
-			"type1": RES_IRON, "amount1": 10,
-			"type2": RES_GOLD, "amount2": 5,
+			"type1": RES_IRON, "amount1": 30,
+			"type2": RES_GEMS, "amount2": 10,
 			"effect": 200.0
 		},
 		{
-			"type1": RES_IRON, "amount1": 30,
-			"type2": RES_GOLD, "amount2": 10,
-			"effect": 250.0
+			"type1": RES_IRON, "amount1": 40,
+			"type2": RES_GEMS, "amount2": 40,
+			"effect": 260.0
 		},
 		{
-			"effect": 350.0
+			"type1": RES_IRON, "amount1": 50,
+			"type2": RES_GEMS, "amount2": 50,
+			"effect": 320.0
+		},
+		{
+			"effect": 390.0
 		},
 	],
 	[ # 6 Vision Range
 		{
-			"type1": RES_IRON, "amount1": 10,
+			"type1": RES_GEMS, "amount1": 10,
 			"type2": RES_GOLD, "amount2": 5,
 			"effect": Vector2(100.0, 192.0)
 		},
 		{
-			"type1": RES_IRON, "amount1": 20,
+			"type1": RES_GEMS, "amount1": 20,
 			"type2": RES_GOLD, "amount2": 40,
 			"effect": Vector2(175.0, 256.0)
 		},

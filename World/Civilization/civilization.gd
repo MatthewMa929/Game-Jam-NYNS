@@ -29,6 +29,13 @@ var tween
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	$"/root/World/UI/UpgradeMenu".show()
+	if !visited:
+		var tether = $"/root/World/OxygenTethers".get_child(0).duplicate()
+		$"/root/World/OxygenTethers".add_child(tether)
+		tether.position = position
+		tether.z_index = -1
+
 	# set the x and y to a random val  
 	# in pixels: x clamped (600, 2200), y every 3500 
 	dirt.delete_dirt((global_position.x - 450)/16, 900/16, (global_position.y - 300)/16, 600/16)

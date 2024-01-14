@@ -71,6 +71,7 @@ Place={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 
 [wwise]

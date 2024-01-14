@@ -4932,6 +4932,10 @@ autoplay = "new_animation"
 script = SubResource("GDScript_p1hi3")
 
 [node name="Worm" parent="." instance=ExtResource("11_8mjb1")]
+position = Vector2(625, 6378)
+
+[node name="Worm3" parent="." instance=ExtResource("11_8mjb1")]
+position = Vector2(825, 23807)
 
 [node name="AkBank" type="AkBank" parent="."]
 bank = {

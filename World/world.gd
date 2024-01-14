@@ -21,7 +21,7 @@ func _ready():
 func _process(delta):
 	#print(player.position.y, ' ', DEPTH)
 	if DEPTH - (player.position.y)/16.0 < 200 and civ_visited:
-		civ_visited = false
+		# civ_visited = false
 		#print(player.position.y/16.0, ' ', DEPTH)
 		ores.create_ores(WIDTH, inc*2)
 		DEPTH += inc*2
