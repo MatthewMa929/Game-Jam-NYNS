@@ -1,4 +1,4 @@
-extends Sprite2D
+extends PointLight2D
 
 @export var light_radius = 512.0:
 	set(v):

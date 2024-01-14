@@ -22,6 +22,7 @@ var civ_textures := [
 	preload("res://Sprites/Civilization/civ9.png")
 ] as Array[Texture]
 
+var tween
 
 # 450px tall, 750px wide
 # Called when the node enters the scene tree for the first time.
@@ -67,3 +68,20 @@ func _set_civ_variant(bg_var):
 
 func _on_player_entered_area_entered(area):
 	visited = true
+	if tween != null: tween.stop()
+	tween = create_tween()
+	$PointLight2D.show()
+	$PointLight2D2.show()
+	tween.tween_property($PointLight2D, "energy", 1.0, 1.0)
+	tween.parallel().tween_property($PointLight2D2, "energy", 1.0, 1.0)
+
+
+func _on_player_entered_area_exited(area:Area2D):
+	if tween != null: tween.stop()
+	tween = create_tween()
+	tween.tween_property($PointLight2D, "energy", 0.0, 1.0)
+	tween.parallel().tween_property($PointLight2D2, "energy", 0.0, 1.0)
+	tween.tween_callback(func():
+		$PointLight2D.hide()
+		$PointLight2D2.hide()
+	)

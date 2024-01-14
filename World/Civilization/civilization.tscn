@@ -10,10 +10,24 @@ radius = 313.0
 height = 882.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lie2s"]
-radius = 295.0
-height = 868.0
+radius = 37.0
+height = 168.0
+
+[sub_resource type="Gradient" id="Gradient_ipsge"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0606061, 0.256506, 0.609665)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.289117, 0.299238, 0.380208, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hqtst"]
+gradient = SubResource("Gradient_ipsge")
+width = 2048
+height = 2048
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 1)
 
 [node name="Civilization" type="Node2D"]
+z_index = -2
 script = ExtResource("1_o8yxp")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -43,5 +57,16 @@ shape = SubResource("CapsuleShape2D_qhkc8")
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_lie2s")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(-242, 105)
+texture = SubResource("GradientTexture2D_hqtst")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(153, 31)
+texture = SubResource("GradientTexture2D_hqtst")
+
 [connection signal="area_entered" from="TileDelete" to="." method="_on_tile_delete_area_entered"]
 [connection signal="area_entered" from="PlayerEntered" to="." method="_on_player_entered_area_entered"]
+[connection signal="area_exited" from="PlayerEntered" to="." method="_on_player_entered_area_exited"]

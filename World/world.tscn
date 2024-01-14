@@ -40,8 +40,8 @@
 
 [sub_resource type="Gradient" id="Gradient_y1dpi"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0252809, 0.256506, 0.609665)
-colors = PackedColorArray(0.0313726, 0.0352941, 0.0470588, 0, 0, 0, 0, 0, 0.069987, 0.0756834, 0.104167, 0.717647, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.0606061, 0.256506, 0.609665)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.289117, 0.299238, 0.380208, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tfh8p"]
 gradient = SubResource("Gradient_y1dpi")
@@ -4414,13 +4414,10 @@ func _ready():
 [node name="World" type="Node2D"]
 script = ExtResource("1_kbbh3")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="Node2D" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(4096, 4096)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Node2D"]
+[node name="Background" type="Sprite2D" parent="."]
+visible = false
+show_behind_parent = true
+z_index = -1024
 texture_repeat = 2
 position = Vector2(1729, 1227)
 texture = ExtResource("1_sy1vs")
@@ -4432,7 +4429,7 @@ metadata/_edit_lock_ = true
 position = Vector2(1152, 89)
 metadata/_edit_group_ = true
 
-[node name="Darkness" type="Sprite2D" parent="Player"]
+[node name="Darkness" type="PointLight2D" parent="Player"]
 show_behind_parent = true
 z_index = 100
 position = Vector2(-1, 1)
@@ -4505,6 +4502,10 @@ script = ExtResource("13_oluvf")
 [node name="OxygenTether" parent="OxygenTethers" instance=ExtResource("29_458ob")]
 show_behind_parent = true
 position = Vector2(1155, 90)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(1152, 89)
+color = Color(0, 0, 0, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
