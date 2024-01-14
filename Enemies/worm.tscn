@@ -83,7 +83,6 @@ region_enabled = true
 region_rect = Rect2(4.42994, 226.638, 298.27, 148.609)
 
 [node name="LeaveArea" type="Area2D" parent="."]
-scale = Vector2(1, 1)
 collision_layer = 0
 collision_mask = 16
 

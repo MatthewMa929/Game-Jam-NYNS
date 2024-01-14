@@ -4446,20 +4446,20 @@ limit_right = 3200
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
-[node name="OxygenManager" type="Node" parent="Player" node_paths=PackedStringArray("tether_placer", "o2_meter", "o2_low_vignette", "o2_low_fullscreen")]
+[node name="OxygenManager" type="Node" parent="Player"]
 script = ExtResource("7_flc4j")
-tether_placer = NodePath("../TetherPlacer")
-o2_meter = NodePath("../../UI/Control/TopleftHUD/Oxygen")
-o2_low_vignette = NodePath("../../UI/LowVignette")
-o2_low_fullscreen = NodePath("../../UI/Dark")
 o2_max = 40.0
+tether_placer = null
+o2_meter = null
+o2_low_vignette = null
+o2_low_fullscreen = null
 
-[node name="TetherPlacer" type="Area2D" parent="Player" node_paths=PackedStringArray("place_at", "count_label")]
+[node name="TetherPlacer" type="Area2D" parent="Player"]
 self_modulate = Color(0.152941, 0.486275, 0.780392, 0.619608)
 script = ExtResource("4_qdwvv")
 tether_scene = ExtResource("29_458ob")
-place_at = NodePath("../../OxygenTethers")
-count_label = NodePath("../../UI/Control/TopleftHUD/OxygenLines")
+place_at = null
+count_label = null
 
 [node name="Node2D" type="CollisionShape2D" parent="Player/TetherPlacer"]
 shape = SubResource("CircleShape2D_k1njq")
@@ -4934,20 +4934,44 @@ script = SubResource("GDScript_p1hi3")
 [node name="Worm" parent="." instance=ExtResource("11_8mjb1")]
 
 [node name="AkBank" type="AkBank" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
 bank = {
 "id": 3161908922,
 "name": "Main"
 }
 load_on = 1
+script = null
 
 [node name="AkListener2D" type="AkListener2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
+script = null
 
 [node name="Music" type="AkEvent2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+editor_description = ""
 event = {
 "id": 1479112770,
 "name": "Play_Cave_OST"
 }
 trigger_on = 2
+script = null
 
 [node name="Civilization" parent="." instance=ExtResource("37_qn2ik")]
 position = Vector2(1216, 1492)
