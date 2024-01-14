@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://76gsp4ebwiuc"]
+[gd_scene load_steps=9 format=3 uid="uid://76gsp4ebwiuc"]
 
 [ext_resource type="Script" path="res://Enemies/worm.gd" id="1_hlblv"]
 [ext_resource type="Texture2D" uid="uid://b0apidial1asc" path="res://Sprites/Worm.png" id="2_wf82b"]
@@ -17,12 +17,17 @@ height = 190.0
 radius = 62.5
 height = 170.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_gbsc2"]
+radius = 255.11
+
 [node name="Worm" type="CharacterBody2D"]
 rotation = 3.14159
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_hlblv")
 
 [node name="Head" type="CharacterBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
 
 [node name="SprHead" type="Sprite2D" parent="Head"]
 z_index = 2
@@ -76,6 +81,12 @@ rotation = 0.00621772
 texture = ExtResource("2_wf82b")
 region_enabled = true
 region_rect = Rect2(4.42994, 226.638, 298.27, 148.609)
+
+[node name="LeaveArea" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeaveArea"]
+shape = SubResource("CircleShape2D_gbsc2")
 
 [node name="HoverTimer" type="Timer" parent="."]
 wait_time = 6.0

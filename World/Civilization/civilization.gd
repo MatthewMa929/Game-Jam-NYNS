@@ -8,6 +8,8 @@ const CIV_HEIGHT = 1235
 @onready var workshop = $Workshop
 @onready var qtmole = $SurpriseMole
 
+var visited = false
+
 var civ_textures := [
 	preload("res://Sprites/Civilization/civ1.png"),
 	preload("res://Sprites/Civilization/civ3.png"),
@@ -62,13 +64,6 @@ func _set_civ_variant(bg_var):
 	if (rng.randf() < 0.1):
 		qtmole.visible = true
 	
-	
-	
 
-
-	
-
-
-
-
-
+func _on_player_entered_area_entered(area):
+	visited = true

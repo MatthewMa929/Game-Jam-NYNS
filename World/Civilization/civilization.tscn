@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://chuoy0vv80b6d"]
+[gd_scene load_steps=7 format=3 uid="uid://chuoy0vv80b6d"]
 
 [ext_resource type="Script" path="res://World/Civilization/civilization.gd" id="1_o8yxp"]
 [ext_resource type="Texture2D" uid="uid://bvo8v0sr7k2h6" path="res://Sprites/Civilization/civ1.png" id="2_pansq"]
@@ -8,6 +8,10 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhkc8"]
 radius = 313.0
 height = 882.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lie2s"]
+radius = 295.0
+height = 868.0
 
 [node name="Civilization" type="Node2D"]
 script = ExtResource("1_o8yxp")
@@ -33,4 +37,11 @@ position = Vector2(-13, -6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qhkc8")
 
+[node name="PlayerEntered" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEntered"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lie2s")
+
 [connection signal="area_entered" from="TileDelete" to="." method="_on_tile_delete_area_entered"]
+[connection signal="area_entered" from="PlayerEntered" to="." method="_on_player_entered_area_entered"]

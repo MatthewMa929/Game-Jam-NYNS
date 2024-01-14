@@ -11,11 +11,11 @@ func _process(delta):
 	pass
 
 func create_dirt(width, depth, increase):
-	if depth > 250:
+	if depth > 0:
 		dirt_type = 1
-	if depth > 500:
+	if depth > 400:
 		dirt_type = 2
-	if depth > 800:
+	if depth > 600:
 		dirt_type = 3
 	for y in range(depth, depth+increase):
 		for x in width:

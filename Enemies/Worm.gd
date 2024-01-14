@@ -55,7 +55,6 @@ func _physics_process(delta):
 	if taking_dmg:
 		hp += -1
 		Wwise.post_event("Play_WormHit", self)
-		print('hit')
 	if hp == 0:
 		queue_free()
 		Wwise.post_event("Play_WormDeath", self)
@@ -114,7 +113,6 @@ func _on_sense_area_entered(area):
 		print('sense')
 	Wwise.set_state("Worm_in_Range", "true")
 		
-	
 func _on_sense_area_exited(area):
 	in_area = false
 	Wwise.set_state("Worm_in_Range", "false")

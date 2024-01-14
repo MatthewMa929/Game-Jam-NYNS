@@ -309,4 +309,5 @@ libraries = {
 wait_time = 0.1
 
 [connection signal="block_destroyed" from="." to="AnimationManager" method="_on_player_block_destroyed"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="DigTimer" to="." method="_on_dig_timer_timeout"]

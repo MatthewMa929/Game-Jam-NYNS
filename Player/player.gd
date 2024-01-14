@@ -71,3 +71,6 @@ func _physics_process(delta):
 
 func _on_dig_timer_timeout():
 	SPEED = ORI_SPEED
+
+func _on_hitbox_area_entered(area):
+	print('yea')
