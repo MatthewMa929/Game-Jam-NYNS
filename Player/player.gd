@@ -20,6 +20,7 @@ var oxyore = 0
 @onready var oxygen_manager = $OxygenManager
 @onready var hurt_timer = $HurtTimer
 @onready var in_civ = $InCiv
+@onready var upgrades = $"../UI/UpgradeMenu"
 
 func _ready():
 	Wwise.register_game_obj(self, "Break Crystal")
@@ -93,3 +94,11 @@ func _on_in_civ_area_entered(area):
 
 func _on_in_civ_area_exited(area):
 	inside = false
+
+
+func _on_in_workshop_area_entered(area):
+	upgrades.visible = true
+
+
+func _on_in_workshop_area_exited(area):
+	upgrades.visible = false

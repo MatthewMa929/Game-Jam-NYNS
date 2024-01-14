@@ -13,6 +13,7 @@ var civ_visited = true
 @onready var ores = $Ores
 @onready var player = $Player
 @onready var civilization = $Civilization
+@onready var worm = $Worm
 
 func _ready():
 	connect("player_entered", check_civ)
@@ -25,6 +26,8 @@ func _process(delta):
 		ores.create_ores(WIDTH, inc*2)
 		DEPTH += inc*2
 		print('increased')
+		#var wrm = worm.duplicate()
+		#add_child(wrm)
 	if (DEPTH%200 == 0) and DEPTH != 200*civ_amt:
 		civ_amt += 1
 		create_civilization(DEPTH)

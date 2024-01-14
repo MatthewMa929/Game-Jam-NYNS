@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dxgyw2gl5mrt3"]
+[gd_scene load_steps=21 format=3 uid="uid://dxgyw2gl5mrt3"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_y7tub"]
 [ext_resource type="Texture2D" uid="uid://bhil1e6itrt0f" path="res://Sprites/Character.png" id="2_46mrk"]
@@ -159,6 +159,12 @@ nodes/float/position = Vector2(26.6667, 373.333)
 nodes/output/position = Vector2(320, 133.333)
 node_connections = [&"Add2", 0, &"claw", &"Add2", 1, &"float", &"output", 0, &"Add2"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_f3k0b"]
+radius = 22.0227
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dcuig"]
+radius = 23.0217
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_y7tub")
 
@@ -317,6 +323,14 @@ collision_layer = 0
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InCiv"]
+shape = SubResource("CircleShape2D_f3k0b")
+
+[node name="InWorkshop" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InWorkshop"]
+shape = SubResource("CircleShape2D_dcuig")
 
 [connection signal="block_destroyed" from="." to="AnimationManager" method="_on_player_block_destroyed"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
@@ -324,3 +338,5 @@ collision_mask = 16
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="area_entered" from="InCiv" to="." method="_on_in_civ_area_entered"]
 [connection signal="area_exited" from="InCiv" to="." method="_on_in_civ_area_exited"]
+[connection signal="area_entered" from="InWorkshop" to="." method="_on_in_workshop_area_entered"]
+[connection signal="area_exited" from="InWorkshop" to="." method="_on_in_workshop_area_exited"]

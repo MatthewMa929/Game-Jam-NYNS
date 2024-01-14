@@ -9,11 +9,11 @@ outline_color = Color(0.529412, 0.321569, 0.12549, 1)
 shadow_color = Color(0.529412, 0.321569, 0.12549, 1)
 shadow_offset = Vector2(0, -3)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lv6n6"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk36g"]
 atlas = ExtResource("2_b0ltk")
 region = Rect2(0, 32, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5mosm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_30kh4"]
 atlas = ExtResource("2_b0ltk")
 region = Rect2(0, 0, 32, 32)
 
@@ -50,7 +50,7 @@ label_settings = SubResource("LabelSettings_npcnw")
 [node name="Res1Icon" type="TextureRect" parent="Box"]
 custom_minimum_size = Vector2(30.8, 0)
 layout_mode = 2
-texture = SubResource("AtlasTexture_lv6n6")
+texture = SubResource("AtlasTexture_rk36g")
 stretch_mode = 5
 
 [node name="Res1Amount" type="Label" parent="Box"]
@@ -61,7 +61,7 @@ label_settings = SubResource("LabelSettings_npcnw")
 [node name="Res2Icon" type="TextureRect" parent="Box"]
 custom_minimum_size = Vector2(30.8, 0)
 layout_mode = 2
-texture = SubResource("AtlasTexture_5mosm")
+texture = SubResource("AtlasTexture_30kh4")
 stretch_mode = 5
 
 [node name="Res2Amount" type="Label" parent="Box"]

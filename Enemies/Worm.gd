@@ -25,7 +25,7 @@ var max = 4
 var curr = 0
 var angle = 0
 var randomnum = 0
-var hp = 300
+var hp = 180
 var radius = 700
 var circle_angle = 0
 var pos = Vector2(0, 0)
@@ -57,7 +57,8 @@ func _physics_process(delta):
 		hp += -1
 		Wwise.post_event("Play_WormHit", self)
 	if hp == 0:
-		queue_free()
+		position = Vector2(player.position.x + 6000, player.position.y + 6000)
+		hp = 180
 		Wwise.post_event("Play_WormDeath", self)
 	match state:
 		TRAVEL:
